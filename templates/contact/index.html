@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us | Gen-Z Constructors Limited Company{% endblock %}
+
+{% block content %}
+
+<!-- Hero Header -->
+<section class="bg-[#010B20] text-[#F1EDDF] py-14 lg:py-18 relative overflow-hidden border-b border-[#B98F3D]/30">
+  <div class="absolute inset-0 bg-blueprint opacity-50 pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-md bg-[#08060A] border border-[#B98F3D]/40 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
+      Get in Touch
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-heading font-extrabold text-white">
+      Contact <span class="text-gradient-gold">Gen-Z Constructors</span>
+    </h1>
+    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto">
+      Have a building inquiry or require an architectural consultation? Reach our team directly through phone, WhatsApp, or the form below.
+    </p>
+  </div>
+</section>
+
+<!-- Main Contact Section -->
+<section class="py-16 lg:py-20 bg-[#F8F7F3]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Contact Details & Direct Channels (Left 5 cols) -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <div class="card-brand p-8 bg-white border border-[#E7E2D8] rounded-2xl space-y-6 arch-corner">
+          <h2 class="text-2xl font-heading font-bold text-[#010B20]">
+            Direct Channels
+          </h2>
+          <div class="gold-divider"></div>
+
+          <!-- Phone Card -->
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[#FAF8F2] border border-[#E7E2D8]">
+            <div class="w-10 h-10 rounded-lg bg-[#010B20] text-[#B98F3D] flex items-center justify-center shrink-0">
+              <i data-lucide="phone-call" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 font-heading block uppercase">Direct Phone Line</span>
+              <a href="tel:{{ company_phone_clean }}" class="text-base font-heading font-bold text-[#010B20] hover:text-[#B98F3D] transition-colors">
+                {{ company_phone_display }}
+              </a>
+            </div>
+          </div>
+
+          <!-- WhatsApp Card -->
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[#FAF8F2] border border-[#E7E2D8]">
+            <div class="w-10 h-10 rounded-lg bg-[#128C7E] text-white flex items-center justify-center shrink-0">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 font-heading block uppercase">WhatsApp Direct</span>
+              <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="text-base font-heading font-bold text-[#128C7E] hover:underline">
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Email Card -->
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[#FAF8F2] border border-[#E7E2D8]">
+            <div class="w-10 h-10 rounded-lg bg-[#010B20] text-[#B98F3D] flex items-center justify-center shrink-0">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 font-heading block uppercase">Email Inquiries</span>
+              <a href="mailto:{{ company_email }}" class="text-sm font-heading font-bold text-[#010B20] hover:text-[#B98F3D] transition-colors break-all">
+                {{ company_email }}
+              </a>
+            </div>
+          </div>
+
+          <!-- Office Location -->
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[#FAF8F2] border border-[#E7E2D8]">
+            <div class="w-10 h-10 rounded-lg bg-[#010B20] text-[#B98F3D] flex items-center justify-center shrink-0">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 font-heading block uppercase">Operating Region</span>
+              <span class="text-sm font-heading font-bold text-[#010B20] block">Nairobi, Kenya</span>
+            </div>
+          </div>
+
+          <!-- Working Hours -->
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[#FAF8F2] border border-[#E7E2D8]">
+            <div class="w-10 h-10 rounded-lg bg-[#010B20] text-[#B98F3D] flex items-center justify-center shrink-0">
+              <i data-lucide="clock" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 font-heading block uppercase">Working Hours</span>
+              <span class="text-xs text-slate-700 block font-medium">Mon - Fri: 8:00 AM - 5:00 PM</span>
+              <span class="text-xs text-slate-700 block font-medium">Sat: 8:00 AM - 1:00 PM</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Contact Message Form (Right 7 cols) -->
+      <div class="lg:col-span-7">
+        <div class="card-brand p-8 sm:p-10 bg-white border border-[#E7E2D8] rounded-2xl shadow-sm arch-corner">
+          
+          <div class="border-b border-[#E7E2D8] pb-6 mb-8">
+            <h2 class="text-2xl font-heading font-bold text-[#010B20]">
+              Send Us a Message
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">
+              Fill in your inquiry below and our team will get in touch with you promptly.
+            </p>
+          </div>
+
+          <form method="post" class="space-y-6" novalidate>
+            {% csrf_token %}
+            
+            <!-- Honeypot Bot Trap -->
+            {{ form.website_url_hp }}
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="{{ form.full_name.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                  Full Name <span class="text-red-500">*</span>
+                </label>
+                {{ form.full_name }}
+                {% if form.full_name.errors %}<span class="text-[11px] text-red-600">{{ form.full_name.errors.0 }}</span>{% endif %}
+              </div>
+
+              <div>
+                <label for="{{ form.phone.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                  Phone Number
+                </label>
+                {{ form.phone }}
+                {% if form.phone.errors %}<span class="text-[11px] text-red-600">{{ form.phone.errors.0 }}</span>{% endif %}
+              </div>
+            </div>
+
+            <div>
+              <label for="{{ form.email.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                Email Address <span class="text-red-500">*</span>
+              </label>
+              {{ form.email }}
+              {% if form.email.errors %}<span class="text-[11px] text-red-600">{{ form.email.errors.0 }}</span>{% endif %}
+            </div>
+
+            <div>
+              <label for="{{ form.subject.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                Subject <span class="text-red-500">*</span>
+              </label>
+              {{ form.subject }}
+              {% if form.subject.errors %}<span class="text-[11px] text-red-600">{{ form.subject.errors.0 }}</span>{% endif %}
+            </div>
+
+            <div>
+              <label for="{{ form.message.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                Message <span class="text-red-500">*</span>
+              </label>
+              {{ form.message }}
+              {% if form.message.errors %}<span class="text-[11px] text-red-600">{{ form.message.errors.0 }}</span>{% endif %}
+            </div>
+
+            <div class="pt-4 border-t border-[#E7E2D8]">
+              <button type="submit" class="btn btn-primary w-full sm:w-auto text-xs uppercase tracking-wider py-3.5 px-8">
+                <span>Send Message</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

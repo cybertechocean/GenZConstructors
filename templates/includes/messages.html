@@ -1,0 +1,23 @@
+{% if messages %}
+<div class="fixed top-20 right-4 z-50 flex flex-col gap-2 max-w-md w-full pointer-events-none" id="toast-container">
+  {% for message in messages %}
+  <div class="toast-item pointer-events-auto p-4 rounded-lg shadow-lg border flex items-start gap-3 transition-all duration-300 {% if message.tags == 'success' %}bg-emerald-950 text-emerald-100 border-emerald-500/40{% elif message.tags == 'error' %}bg-red-950 text-red-100 border-red-500/40{% else %}bg-slate-900 text-slate-100 border-slate-700{% endif %}" role="alert">
+    <div class="shrink-0 mt-0.5">
+      {% if message.tags == 'success' %}
+      <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i>
+      {% elif message.tags == 'error' %}
+      <i data-lucide="alert-circle" class="w-5 h-5 text-red-400"></i>
+      {% else %}
+      <i data-lucide="info" class="w-5 h-5 text-amber-400"></i>
+      {% endif %}
+    </div>
+    <div class="flex-1 text-sm font-medium">
+      {{ message }}
+    </div>
+    <button type="button" class="toast-dismiss shrink-0 text-slate-400 hover:text-white p-1" aria-label="Close notification">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

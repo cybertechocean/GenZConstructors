@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}403 - Access Forbidden | Gen-Z Constructors Limited Company{% endblock %}
+
+{% block content %}
+<section class="min-h-[70vh] flex items-center justify-center py-20 bg-[#010B20] text-[#F1EDDF] relative overflow-hidden">
+  <div class="absolute inset-0 bg-blueprint opacity-40 pointer-events-none"></div>
+
+  <div class="relative max-w-xl mx-auto px-4 text-center space-y-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#08060A] border border-[#B98F3D]/40 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
+      Error 403
+    </div>
+
+    <h1 class="text-4xl sm:text-6xl font-heading font-extrabold text-white">
+      Restricted <span class="text-gradient-gold">Site Area</span>.
+    </h1>
+
+    <p class="text-base text-slate-300">
+      You don't have authorization to access this section of the construction portal.
+    </p>
+
+    <div class="flex justify-center pt-4">
+      <a href="{% url 'core:home' %}" class="btn btn-primary text-xs uppercase py-3.5 px-6">
+        <span>Back to Home</span>
+        <i data-lucide="home" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

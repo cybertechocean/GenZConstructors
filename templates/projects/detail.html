@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ meta_title }}{% endblock %}
+{% block meta_description %}{{ meta_description }}{% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumbs & Hero Header -->
+<section class="bg-[#010B20] text-[#F1EDDF] py-14 lg:py-18 relative overflow-hidden border-b border-[#B98F3D]/30">
+  <div class="absolute inset-0 bg-blueprint opacity-50 pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <nav class="flex items-center gap-2 text-xs font-heading text-slate-400 mb-6" aria-label="Breadcrumb">
+      <a href="{% url 'core:home' %}" class="hover:text-white transition-colors">Home</a>
+      <span>/</span>
+      <a href="{% url 'core:projects' %}" class="hover:text-white transition-colors">Projects</a>
+      <span>/</span>
+      <span class="text-[#EDDAA0]">{{ project.title }}</span>
+    </nav>
+
+    <div class="max-w-4xl space-y-4">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="px-3 py-1 rounded-md bg-[#08060A] border border-[#B98F3D]/40 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
+          {{ project.get_category_display }}
+        </span>
+        <span class="px-3 py-1 rounded-md bg-emerald-950/80 border border-emerald-500/40 text-xs font-heading font-semibold text-emerald-300 uppercase tracking-wider">
+          {{ project.get_status_display }}
+        </span>
+        {% if project.is_sample %}
+        <span class="px-3 py-1 rounded-md bg-amber-900/80 border border-amber-500/40 text-xs font-heading font-semibold text-amber-200">
+          Sample Project Architecture
+        </span>
+        {% endif %}
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-heading font-extrabold text-white leading-tight">
+        {{ project.title }}
+      </h1>
+      
+      <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+        {{ project.short_description }}
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Main Details & Gallery -->
+<section class="py-16 lg:py-20 bg-[#F8F7F3]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Main Content (Left 8 cols) -->
+      <div class="lg:col-span-8 space-y-10">
+        
+        <!-- Project Description Card -->
+        <div class="card-brand p-8 bg-white border border-[#E7E2D8] rounded-2xl space-y-6">
+          <h2 class="text-2xl font-heading font-bold text-[#010B20]">
+            Project Overview & Execution
+          </h2>
+          <div class="gold-divider"></div>
+          
+          <div class="text-sm sm:text-base text-slate-700 leading-relaxed whitespace-pre-line">
+            {{ project.description }}
+          </div>
+        </div>
+
+        <!-- Scope of Work Checklist -->
+        {% if project.get_scope_list %}
+        <div class="card-brand p-8 bg-white border border-[#E7E2D8] rounded-2xl space-y-6">
+          <h3 class="text-xl font-heading font-bold text-[#010B20]">
+            Scope of Construction Works
+          </h3>
+          <div class="gold-divider"></div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {% for item in project.get_scope_list %}
+            <div class="p-4 rounded-xl bg-[#FAF8F2] border border-[#E7E2D8] flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#010B20] text-[#B98F3D] flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </div>
+              <span class="text-xs sm:text-sm font-medium text-slate-800">{{ item }}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Services Involved Badges -->
+        {% if project.services.all %}
+        <div class="card-brand p-8 bg-white border border-[#E7E2D8] rounded-2xl space-y-4">
+          <h3 class="text-lg font-heading font-bold text-[#010B20]">
+            Building Solutions Implemented
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {% for s in project.services.all %}
+            <a href="{{ s.get_absolute_url }}" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#010B20] text-xs font-heading font-semibold text-[#EDDAA0] hover:bg-[#B98F3D] hover:text-[#010B20] transition-colors">
+              <i data-lucide="{{ s.icon|default:'check' }}" class="w-3.5 h-3.5"></i>
+              <span>{{ s.name }}</span>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Gallery Photos (If uploaded) -->
+        {% if gallery %}
+        <div class="space-y-4">
+          <h3 class="text-xl font-heading font-bold text-[#010B20]">
+            Project Image Gallery
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            {% for g_img in gallery %}
+            <div class="relative h-44 rounded-xl overflow-hidden border border-[#E7E2D8] cursor-pointer group" data-lightbox-src="{{ g_img.image.url }}" data-caption="{{ g_img.caption|default:project.title }}">
+              <img src="{{ g_img.image.url }}" alt="{{ g_img.caption|default:project.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-6 h-6"></i>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+
+      <!-- Sidebar (Right 4 cols) -->
+      <div class="lg:col-span-4 space-y-8">
+        
+        <!-- Project Summary Card -->
+        <div class="card-brand p-6 bg-white border border-[#E7E2D8] rounded-2xl space-y-5">
+          <h3 class="text-lg font-heading font-bold text-[#010B20] border-b border-[#E7E2D8] pb-3">
+            Project Quick Facts
+          </h3>
+
+          <div class="space-y-3 text-xs">
+            <div class="flex justify-between py-1.5 border-b border-slate-100">
+              <span class="text-slate-500 font-medium">Category:</span>
+              <span class="font-heading font-bold text-[#010B20]">{{ project.get_category_display }}</span>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-slate-100">
+              <span class="text-slate-500 font-medium">Location:</span>
+              <span class="font-heading font-bold text-[#010B20]">{{ project.location|default:"Kenya" }}</span>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-slate-100">
+              <span class="text-slate-500 font-medium">Status:</span>
+              <span class="font-heading font-bold text-emerald-700">{{ project.get_status_display }}</span>
+            </div>
+            <div class="flex justify-between py-1.5">
+              <span class="text-slate-500 font-medium">Contractor:</span>
+              <span class="font-heading font-bold text-[#010B20]">Gen-Z Constructors</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action / Quote Card -->
+        <div class="card-dark p-6 rounded-2xl space-y-6 sticky top-28">
+          <div class="space-y-2">
+            <span class="text-xs font-heading font-bold uppercase tracking-widest text-[#B98F3D] block">
+              Start Something Similar
+            </span>
+            <h3 class="text-xl font-heading font-bold text-white">
+              Discuss Your Project
+            </h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Looking to develop a building or architectural concept similar to this project? Our engineering team is ready to assist.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <a href="{% url 'core:request_quote' %}" class="btn btn-primary w-full text-xs uppercase py-3.5">
+              <span>Request Quotation</span>
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+            </a>
+
+            <a href="{{ project_whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-brand w-full text-xs py-3.5">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>Discuss on WhatsApp</span>
+            </a>
+
+            <a href="tel:{{ company_phone_clean }}" class="btn btn-outline-ivory w-full text-xs py-3">
+              <i data-lucide="phone-call" class="w-4 h-4 text-[#B98F3D]"></i>
+              <span>Call {{ company_phone_display }}</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Related Projects -->
+    {% if related_projects %}
+    <div class="mt-16 pt-12 border-t border-[#E7E2D8]">
+      <h3 class="text-2xl font-heading font-bold text-[#010B20] mb-8">
+        Other Projects in Portfolio
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {% for rp in related_projects %}
+        <div class="card-brand p-6 bg-white border border-[#E7E2D8] rounded-xl flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-heading font-semibold text-[#896321] uppercase tracking-wider block mb-1">
+              {{ rp.get_category_display }}
+            </span>
+            <h4 class="text-base font-heading font-bold text-[#010B20] mb-2">{{ rp.title }}</h4>
+            <p class="text-xs text-slate-600 line-clamp-2">{{ rp.short_description }}</p>
+          </div>
+          <a href="{{ rp.get_absolute_url }}" class="text-xs font-heading font-bold text-[#B98F3D] hover:underline mt-4 inline-flex items-center gap-1">
+            <span>View Case Study</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}

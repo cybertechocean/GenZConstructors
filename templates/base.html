@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- SEO Primary Metadata -->
+  <title>{% block title %}{{ meta_title|default:"Gen-Z Constructors Limited Company | Construction & Building Solutions" }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{{ meta_description|default:site_settings.default_meta_description }}{% endblock %}">
+  <meta name="keywords" content="construction company Kenya, building contractors Nairobi, architectural design Kenya, house construction, structural engineering, building renovation, biodigester Kenya">
+  <meta name="author" content="Gen-Z Constructors Limited Company">
+  <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+  <!-- Favicon and Brand Icons -->
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+
+  <!-- Open Graph / Facebook / WhatsApp Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+  <meta property="og:title" content="{% block og_title %}{{ meta_title|default:'Gen-Z Constructors Limited Company' }}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{{ meta_description|default:site_settings.default_meta_description }}{% endblock %}">
+  <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
+  <meta property="og:site_name" content="Gen-Z Constructors Limited Company">
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}{{ meta_title|default:'Gen-Z Constructors Limited Company' }}{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}{{ meta_description|default:site_settings.default_meta_description }}{% endblock %}">
+  <meta name="twitter:image" content="{% static 'images/og-image.jpg' %}">
+
+  <!-- Google Fonts: Space Grotesk (Headings) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#010B20',
+              'navy-dark': '#08060A',
+              'navy-light': '#0B1A3D',
+              gold: '#B98F3D',
+              'gold-light': '#EDDAA0',
+              'gold-dark': '#896321',
+              ivory: '#F1EDDF',
+              bronze: '#42331E',
+            }
+          },
+          fontFamily: {
+            heading: ['"Space Grotesk"', 'sans-serif'],
+            body: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <!-- JSON-LD Structured Data -->
+  {% include 'includes/schema_org.html' %}
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-[#F8F7F3] text-[#172033] antialiased flex flex-col min-h-screen">
+  
+  <!-- Flash Messages Component -->
+  {% include 'includes/messages.html' %}
+
+  <!-- Main Navigation & Header -->
+  {% include 'includes/navbar.html' %}
+
+  <!-- Main Content Body -->
+  <main class="flex-1 pb-16 md:pb-0" id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Floating WhatsApp Widget -->
+  {% include 'includes/whatsapp_button.html' %}
+
+  <!-- Mobile Fixed Action Bar -->
+  {% include 'includes/mobile_cta.html' %}
+
+  <!-- Master Footer -->
+  {% include 'includes/footer.html' %}
+
+  <!-- Project Gallery Lightbox Modal -->
+  <div id="image-lightbox" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    <button type="button" id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-[#B98F3D] p-2 focus:outline-none" aria-label="Close Lightbox">
+      <i data-lucide="x" class="w-8 h-8"></i>
+    </button>
+    <div class="max-w-4xl max-h-[85vh] flex flex-col items-center">
+      <img id="lightbox-img" src="" alt="Enlarged Project Photo" class="max-h-[75vh] max-w-full object-contain rounded-lg border border-white/20 shadow-2xl">
+      <p id="lightbox-caption" class="text-[#F1EDDF] text-sm mt-3 text-center font-medium"></p>
+    </div>
+  </div>
+
+  <!-- Main Interactivity Script -->
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

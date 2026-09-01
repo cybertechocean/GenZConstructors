@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Construction & Building Services | Gen-Z Constructors Limited Company{% endblock %}
+
+{% block content %}
+
+<!-- Hero Header -->
+<section class="bg-[#010B20] text-[#F1EDDF] py-16 lg:py-20 relative overflow-hidden border-b border-[#B98F3D]/30">
+  <div class="absolute inset-0 bg-blueprint opacity-50 pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-md bg-[#08060A] border border-[#B98F3D]/40 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
+      What We Do
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-heading font-extrabold text-white">
+      Our <span class="text-gradient-gold">Construction Solutions</span>
+    </h1>
+    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto">
+      From ground-up construction and architectural blueprints to interior remodeling and specialized exterior works.
+    </p>
+  </div>
+</section>
+
+<!-- Filter Navigation Pills & Services Grid -->
+<section class="py-16 lg:py-20 bg-[#F8F7F3]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Category Filter Pills -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
+      <a href="{% url 'core:services' %}" class="px-4 py-2 rounded-full text-xs font-heading font-semibold transition-all {% if not selected_category %}bg-[#010B20] text-[#EDDAA0] border border-[#B98F3D]/40 shadow-sm{% else %}bg-white text-slate-700 border border-[#E7E2D8] hover:border-[#B98F3D]{% endif %}">
+        All Solutions ({{ all_services.count }})
+      </a>
+      {% for cat_val, cat_label in categories %}
+      <a href="{% url 'core:services' %}?category={{ cat_val }}" class="px-4 py-2 rounded-full text-xs font-heading font-semibold transition-all {% if selected_category == cat_val %}bg-[#010B20] text-[#EDDAA0] border border-[#B98F3D]/40 shadow-sm{% else %}bg-white text-slate-700 border border-[#E7E2D8] hover:border-[#B98F3D]{% endif %}">
+        {{ cat_label }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for s in services %}
+      <div class="card-brand p-8 bg-white flex flex-col justify-between group">
+        <div>
+          <!-- Icon & Category -->
+          <div class="flex items-center justify-between mb-6">
+            <div class="w-14 h-14 rounded-xl bg-[#010B20] text-[#B98F3D] flex items-center justify-center group-hover:bg-[#B98F3D] group-hover:text-[#010B20] transition-colors shadow-md">
+              <i data-lucide="{{ s.icon|default:'building-2' }}" class="w-7 h-7"></i>
+            </div>
+            <span class="text-[10px] font-heading font-semibold uppercase tracking-wider text-[#896321] px-2.5 py-1 rounded bg-[#FAF8F2] border border-[#B98F3D]/20">
+              {{ s.get_category_display }}
+            </span>
+          </div>
+
+          <h3 class="text-xl font-heading font-bold text-[#010B20] mb-3 group-hover:text-[#896321] transition-colors">
+            {{ s.name }}
+          </h3>
+          
+          <p class="text-sm text-slate-600 leading-relaxed mb-6">
+            {{ s.short_description }}
+          </p>
+
+          <!-- Key Highlights Bullet Points -->
+          {% if s.get_features_list %}
+          <div class="space-y-2 mb-6 pt-2 border-t border-slate-100">
+            {% for feature in s.get_features_list|slice:":3" %}
+            <div class="flex items-center gap-2 text-xs text-slate-600 font-medium">
+              <i data-lucide="check" class="w-3.5 h-3.5 text-[#B98F3D] shrink-0"></i>
+              <span>{{ feature }}</span>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="pt-4 border-t border-[#E7E2D8] flex items-center justify-between">
+          <a href="{{ s.get_absolute_url }}" class="text-xs font-heading font-bold text-[#010B20] group-hover:text-[#B98F3D] flex items-center gap-1.5 transition-colors">
+            <span>View Full Details</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+          </a>
+          <a href="{% url 'core:request_quote' %}?service={{ s.slug }}" class="text-xs font-heading font-semibold text-[#896321] hover:underline">
+            Quote Request
+          </a>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-span-3 text-center p-12 bg-white rounded-2xl border border-dashed border-[#E7E2D8]">
+        <p class="text-slate-500 font-heading text-sm">No services found in this category.</p>
+        <a href="{% url 'core:services' %}" class="btn btn-secondary text-xs uppercase mt-4">View All Services</a>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- Bottom CTA Band -->
+<section class="py-16 bg-[#010B20] text-[#F1EDDF] border-t border-[#B98F3D]/30">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+    <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white">
+      Need a Custom Solution for Your Building?
+    </h3>
+    <p class="text-sm text-slate-300 max-w-xl mx-auto">
+      Tell us about your project specifications, location, and requirements. We will prepare an itemized consultation.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 pt-2">
+      <a href="{% url 'core:request_quote' %}" class="btn btn-primary text-xs uppercase py-3 px-6">
+        Request a Quotation
+      </a>
+      <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-brand text-xs py-3 px-6">
+        Message on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

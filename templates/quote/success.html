@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Enquiry Received | Gen-Z Constructors Limited Company{% endblock %}
+
+{% block content %}
+
+<section class="py-20 lg:py-28 bg-[#F8F7F3] bg-blueprint-subtle min-h-[70vh] flex items-center">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    
+    <div class="card-brand p-8 sm:p-12 bg-white border border-[#E7E2D8] rounded-2xl shadow-xl text-center space-y-8 arch-corner">
+      
+      <!-- Success Icon -->
+      <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 border-2 border-emerald-500/40 flex items-center justify-center mx-auto shadow-md">
+        <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+      </div>
+
+      <div class="space-y-3">
+        <span class="inline-block px-3 py-1 rounded-full bg-[#010B20] text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
+          Enquiry Reference #{{ enquiry.id }}
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-heading font-bold text-[#010B20]">
+          Thank You, {{ enquiry.full_name }}!
+        </h1>
+        <p class="text-base text-slate-600 max-w-lg mx-auto">
+          Your project quotation request has been received. Our engineering and estimation team will review your specifications and get in touch with you shortly.
+        </p>
+      </div>
+
+      <!-- Quick Summary Box -->
+      <div class="p-6 rounded-xl bg-[#FAF8F2] border border-[#E7E2D8] text-left max-w-md mx-auto space-y-2 text-xs text-slate-700 font-medium">
+        <div class="flex justify-between">
+          <span class="text-slate-500">Project Type:</span>
+          <span class="font-bold text-[#010B20]">{{ enquiry.get_project_type_display }}</span>
+        </div>
+        {% if enquiry.service %}
+        <div class="flex justify-between">
+          <span class="text-slate-500">Service:</span>
+          <span class="font-bold text-[#010B20]">{{ enquiry.service.name }}</span>
+        </div>
+        {% endif %}
+        <div class="flex justify-between">
+          <span class="text-slate-500">Budget Range:</span>
+          <span class="font-bold text-[#010B20]">{{ enquiry.get_budget_display }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Timeline:</span>
+          <span class="font-bold text-[#010B20]">{{ enquiry.get_preferred_start_date_display }}</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="{{ direct_whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-brand w-full sm:w-auto text-xs uppercase tracking-wider py-3.5 px-6">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Chat on WhatsApp Now</span>
+        </a>
+        <a href="{% url 'core:home' %}" class="btn btn-secondary w-full sm:w-auto text-xs uppercase tracking-wider py-3.5 px-6">
+          <span>Return to Homepage</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

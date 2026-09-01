@@ -1,0 +1,182 @@
+{% load static %}
+<footer class="bg-[#010B20] text-[#F1EDDF] border-t border-[#B98F3D]/30 pt-16 pb-12 overflow-hidden relative">
+  <!-- Subtle Background Grid Pattern -->
+  <div class="absolute inset-0 bg-blueprint opacity-40 pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12 border-b border-white/10">
+      
+      <!-- Brand & Mission Column -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-14 h-14 rounded-full border-2 border-[#B98F3D] overflow-hidden p-0.5 shrink-0 bg-[#08060A]">
+            <img src="{% static 'images/logo.jpg' %}" alt="Gen-Z Constructors Logo" class="w-full h-full object-cover rounded-full">
+          </div>
+          <div>
+            <span class="font-heading font-bold text-lg text-white block leading-tight">GEN-Z CONSTRUCTORS</span>
+            <span class="text-xs text-[#EDDAA0] uppercase tracking-wider font-semibold">Limited Company</span>
+          </div>
+        </div>
+        <p class="text-sm text-slate-300 font-medium italic">
+          "Building Your Vision, Constructing Your Future."
+        </p>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Modern construction solutions, architectural innovation, and dependable structural delivery across Kenya.
+        </p>
+        <div class="flex items-center gap-3 pt-2">
+          {% if site_settings.facebook_url %}
+          <a href="{{ site_settings.facebook_url }}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-[#08060A] border border-[#B98F3D]/40 flex items-center justify-center text-[#EDDAA0] hover:bg-[#B98F3D] hover:text-[#010B20] transition-colors" aria-label="Facebook">
+            <i data-lucide="facebook" class="w-4 h-4"></i>
+          </a>
+          {% endif %}
+          {% if site_settings.instagram_url %}
+          <a href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-[#08060A] border border-[#B98F3D]/40 flex items-center justify-center text-[#EDDAA0] hover:bg-[#B98F3D] hover:text-[#010B20] transition-colors" aria-label="Instagram">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </a>
+          {% endif %}
+          <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-[#08060A] border border-[#25D366]/40 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors" aria-label="WhatsApp">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links Column -->
+      <div>
+        <h4 class="font-heading font-bold text-sm tracking-wider uppercase text-[#EDDAA0] mb-4 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#B98F3D]"></span>
+          Quick Navigation
+        </h4>
+        <ul class="space-y-2.5 text-sm text-slate-300 font-heading">
+          <li>
+            <a href="{% url 'core:home' %}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:about' %}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
+              <span>About Company</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:services' %}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
+              <span>Services</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:projects' %}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
+              <span>Project Showcase</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:process' %}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
+              <span>7-Step Workflow</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:request_quote' %}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
+              <span>Request a Quote</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:contact' %}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
+              <span>Contact Us</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Construction Solutions Column -->
+      <div>
+        <h4 class="font-heading font-bold text-sm tracking-wider uppercase text-[#EDDAA0] mb-4 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#B98F3D]"></span>
+          Building Solutions
+        </h4>
+        <ul class="space-y-2.5 text-sm text-slate-300">
+          {% for s in nav_services %}
+          <li>
+            <a href="{{ s.get_absolute_url }}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
+              <i data-lucide="arrow-up-right" class="w-3 h-3 text-[#B98F3D]"></i>
+              <span>{{ s.name }}</span>
+            </a>
+          </li>
+          {% empty %}
+          <li><a href="{% url 'core:services' %}" class="hover:text-[#EDDAA0]">Building Construction</a></li>
+          <li><a href="{% url 'core:services' %}" class="hover:text-[#EDDAA0]">Architectural Design</a></li>
+          <li><a href="{% url 'core:services' %}" class="hover:text-[#EDDAA0]">Structural Engineering</a></li>
+          <li><a href="{% url 'core:services' %}" class="hover:text-[#EDDAA0]">Renovations & Remodeling</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Contact Details Column -->
+      <div class="space-y-4">
+        <h4 class="font-heading font-bold text-sm tracking-wider uppercase text-[#EDDAA0] mb-4 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#B98F3D]"></span>
+          Direct Inquiries
+        </h4>
+        <div class="space-y-3 text-sm text-slate-300">
+          <div class="flex items-start gap-3">
+            <i data-lucide="phone" class="w-4 h-4 text-[#B98F3D] shrink-0 mt-1"></i>
+            <div>
+              <span class="text-xs text-slate-400 block">Call Directly</span>
+              <a href="tel:{{ company_phone_clean }}" class="font-semibold text-white hover:text-[#EDDAA0] transition-colors">
+                {{ company_phone_display }}
+              </a>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i data-lucide="message-circle" class="w-4 h-4 text-[#25D366] shrink-0 mt-1"></i>
+            <div>
+              <span class="text-xs text-slate-400 block">WhatsApp Support</span>
+              <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#25D366] hover:underline">
+                Chat Online Now
+              </a>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i data-lucide="mail" class="w-4 h-4 text-[#B98F3D] shrink-0 mt-1"></i>
+            <div>
+              <span class="text-xs text-slate-400 block">Email Inquiries</span>
+              <a href="mailto:{{ company_email }}" class="text-white hover:text-[#EDDAA0] transition-colors break-all">
+                {{ company_email }}
+              </a>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i data-lucide="map-pin" class="w-4 h-4 text-[#B98F3D] shrink-0 mt-1"></i>
+            <div>
+              <span class="text-xs text-slate-400 block">Location</span>
+              <span class="text-slate-300">Nairobi, Kenya</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a href="{% url 'core:request_quote' %}" class="btn btn-primary text-xs uppercase w-full py-2.5">
+            Start Your Project
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Copyright & Disclaimer -->
+    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+      <p>© {{ current_year }} Gen-Z Constructors Limited Company. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="{% url 'core:services' %}" class="hover:text-white transition-colors">Services</a>
+        <a href="{% url 'core:process' %}" class="hover:text-white transition-colors">Process</a>
+        <a href="{% url 'core:contact' %}" class="hover:text-white transition-colors">Contact</a>
+        <a href="{% url 'core:robots_txt' %}" class="hover:text-white transition-colors">Robots</a>
+        <a href="/sitemap.xml" class="hover:text-white transition-colors">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>

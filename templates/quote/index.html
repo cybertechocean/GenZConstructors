@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Request a Quotation | Gen-Z Constructors Limited Company{% endblock %}
+
+{% block content %}
+
+<!-- Hero Header -->
+<section class="bg-[#010B20] text-[#F1EDDF] py-14 lg:py-18 relative overflow-hidden border-b border-[#B98F3D]/30">
+  <div class="absolute inset-0 bg-blueprint opacity-50 pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-md bg-[#08060A] border border-[#B98F3D]/40 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
+      Project Estimation
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-heading font-extrabold text-white">
+      Request a <span class="text-gradient-gold">Project Quotation</span>
+    </h1>
+    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto">
+      Tell us about your construction, design, or renovation requirements to receive an itemized, transparent consultation.
+    </p>
+  </div>
+</section>
+
+<!-- Form & Sidebar Section -->
+<section class="py-16 lg:py-20 bg-[#F8F7F3]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Main Form (Left 8 cols) -->
+      <div class="lg:col-span-8">
+        <div class="card-brand p-8 sm:p-10 bg-white border border-[#E7E2D8] rounded-2xl shadow-sm arch-corner">
+          
+          <div class="border-b border-[#E7E2D8] pb-6 mb-8">
+            <h2 class="text-2xl font-heading font-bold text-[#010B20]">
+              Project Details & Scope
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">
+              Please complete the form below. All fields marked with an asterisk (<span class="text-red-500">*</span>) are required.
+            </p>
+          </div>
+
+          <form method="post" enctype="multipart/form-data" class="space-y-6" novalidate>
+            {% csrf_token %}
+            
+            <!-- Honeypot Bot Trap Field -->
+            {{ form.website_url_hp }}
+
+            <!-- Form Validation Summary -->
+            {% if form.errors %}
+            <div class="p-4 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 space-y-1">
+              <div class="font-heading font-bold flex items-center gap-1.5 text-red-800">
+                <i data-lucide="alert-circle" class="w-4 h-4 text-red-600"></i>
+                <span>Please correct the errors in the form:</span>
+              </div>
+              <ul class="list-disc list-inside space-y-0.5">
+                {% for field, errors in form.errors.items %}
+                  {% for error in errors %}
+                  <li>{{ field|title }}: {{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+
+            <!-- Section 1: Contact Info -->
+            <div class="space-y-4">
+              <h3 class="text-sm font-heading font-bold uppercase tracking-wider text-[#896321]">
+                1. Your Contact Information
+              </h3>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="{{ form.full_name.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    Full Name <span class="text-red-500">*</span>
+                  </label>
+                  {{ form.full_name }}
+                  {% if form.full_name.errors %}<span class="text-[11px] text-red-600">{{ form.full_name.errors.0 }}</span>{% endif %}
+                </div>
+
+                <div>
+                  <label for="{{ form.phone.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    Phone / WhatsApp Number <span class="text-red-500">*</span>
+                  </label>
+                  {{ form.phone }}
+                  {% if form.phone.errors %}<span class="text-[11px] text-red-600">{{ form.phone.errors.0 }}</span>{% endif %}
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="{{ form.email.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    Email Address <span class="text-red-500">*</span>
+                  </label>
+                  {{ form.email }}
+                  {% if form.email.errors %}<span class="text-[11px] text-red-600">{{ form.email.errors.0 }}</span>{% endif %}
+                </div>
+
+                <div>
+                  <label for="{{ form.location.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    Project Location / County
+                  </label>
+                  {{ form.location }}
+                  {% if form.location.errors %}<span class="text-[11px] text-red-600">{{ form.location.errors.0 }}</span>{% endif %}
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Project Specifications -->
+            <div class="space-y-4 pt-4 border-t border-slate-100">
+              <h3 class="text-sm font-heading font-bold uppercase tracking-wider text-[#896321]">
+                2. Project Parameters
+              </h3>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="{{ form.project_type.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    Project Category <span class="text-red-500">*</span>
+                  </label>
+                  {{ form.project_type }}
+                </div>
+
+                <div>
+                  <label for="{{ form.service.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    Specific Service (Optional)
+                  </label>
+                  {{ form.service }}
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label for="{{ form.project_size.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    Estimated Size / Units
+                  </label>
+                  {{ form.project_size }}
+                </div>
+
+                <div>
+                  <label for="{{ form.preferred_start_date.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    Start Timeline
+                  </label>
+                  {{ form.preferred_start_date }}
+                </div>
+
+                <div>
+                  <label for="{{ form.budget.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    Estimated Budget
+                  </label>
+                  {{ form.budget }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Description & File Attachment -->
+            <div class="space-y-4 pt-4 border-t border-slate-100">
+              <h3 class="text-sm font-heading font-bold uppercase tracking-wider text-[#896321]">
+                3. Scope & Documentation
+              </h3>
+
+              <div>
+                <label for="{{ form.description.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                  Project Description & Requirements <span class="text-red-500">*</span>
+                </label>
+                {{ form.description }}
+                {% if form.description.errors %}<span class="text-[11px] text-red-600">{{ form.description.errors.0 }}</span>{% endif %}
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="{{ form.attachment.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    Upload Plan / Sketch / Site Photo (Optional)
+                  </label>
+                  {{ form.attachment }}
+                  <span class="text-[10px] text-slate-400 block mt-1">Accepted: PDF, JPG, PNG under 10MB</span>
+                  {% if form.attachment.errors %}<span class="text-[11px] text-red-600">{{ form.attachment.errors.0 }}</span>{% endif %}
+                </div>
+
+                <div>
+                  <label for="{{ form.referral_source.id_for_label }}" class="block text-xs font-heading font-semibold text-[#010B20] mb-1">
+                    How Did You Find Us?
+                  </label>
+                  {{ form.referral_source }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-6 border-t border-[#E7E2D8] flex flex-col sm:flex-row items-center justify-between gap-4">
+              <button type="submit" class="btn btn-primary w-full sm:w-auto text-xs uppercase tracking-wider py-4 px-8 shadow-lg">
+                <span>Submit Quotation Request</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+
+              <span class="text-xs text-slate-500 flex items-center gap-1.5">
+                <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>Your information is kept secure and confidential.</span>
+              </span>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+      <!-- Sidebar Guidance (Right 4 cols) -->
+      <div class="lg:col-span-4 space-y-6">
+        
+        <!-- WhatsApp Fast Track Box -->
+        <div class="card-dark p-6 rounded-2xl space-y-4">
+          <div class="flex items-center gap-3 text-[#25D366]">
+            <i data-lucide="message-circle" class="w-8 h-8"></i>
+            <div>
+              <h3 class="text-base font-heading font-bold text-white">Prefer WhatsApp?</h3>
+              <span class="text-xs text-slate-400">Direct Chat with Team</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            If you need an immediate response or want to send photos/blueprints directly, message us on WhatsApp now.
+          </p>
+          <a href="{{ whatsapp_quote_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-brand w-full text-xs py-3">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
+
+        <!-- What Happens Next Box -->
+        <div class="card-brand p-6 bg-white border border-[#E7E2D8] rounded-2xl space-y-4">
+          <h3 class="text-base font-heading font-bold text-[#010B20] border-b border-[#E7E2D8] pb-3">
+            What Happens Next?
+          </h3>
+          <div class="space-y-3 text-xs text-slate-600">
+            <div class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-[#010B20] text-[#EDDAA0] flex items-center justify-center shrink-0 text-[10px] font-bold">1</span>
+              <span>Our estimators review your scope and document details.</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-[#010B20] text-[#EDDAA0] flex items-center justify-center shrink-0 text-[10px] font-bold">2</span>
+              <span>We arrange a brief discovery call or site visit if required.</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-[#010B20] text-[#EDDAA0] flex items-center justify-center shrink-0 text-[10px] font-bold">3</span>
+              <span>You receive a structured, transparent Bill of Quantities breakdown.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Support Box -->
+        <div class="card-brand p-6 bg-[#FAF8F2] border border-[#B98F3D]/30 rounded-2xl space-y-2 text-center">
+          <i data-lucide="phone-call" class="w-6 h-6 text-[#B98F3D] mx-auto"></i>
+          <h4 class="text-sm font-heading font-bold text-[#010B20]">Direct Project Hotline</h4>
+          <a href="tel:{{ company_phone_clean }}" class="text-base font-heading font-bold text-[#896321] hover:underline block">
+            {{ company_phone_display }}
+          </a>
+          <span class="text-[11px] text-slate-500 block">Mon - Sat: 8:00 AM - 5:00 PM</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

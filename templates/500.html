@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}500 - Server Error | Gen-Z Constructors Limited Company{% endblock %}
+
+{% block content %}
+<section class="min-h-[70vh] flex items-center justify-center py-20 bg-[#010B20] text-[#F1EDDF] relative overflow-hidden">
+  <div class="absolute inset-0 bg-blueprint opacity-40 pointer-events-none"></div>
+
+  <div class="relative max-w-xl mx-auto px-4 text-center space-y-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#08060A] border border-[#B98F3D]/40 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
+      Error 500
+    </div>
+
+    <h1 class="text-4xl sm:text-6xl font-heading font-extrabold text-white">
+      Under <span class="text-gradient-gold">Maintenance</span>.
+    </h1>
+
+    <p class="text-base text-slate-300">
+      We encountered a temporary server error. Our engineering team has been notified.
+    </p>
+
+    <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+      <a href="{% url 'core:home' %}" class="btn btn-primary text-xs uppercase py-3.5 px-6">
+        <span>Back to Home</span>
+        <i data-lucide="home" class="w-4 h-4"></i>
+      </a>
+      <a href="tel:{{ company_phone_clean }}" class="btn btn-outline-ivory text-xs uppercase py-3.5 px-6">
+        <span>Call Support</span>
+        <i data-lucide="phone" class="w-4 h-4 text-[#B98F3D]"></i>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

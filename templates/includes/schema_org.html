@@ -1,0 +1,64 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://{{ company_domain }}/#organization",
+      "name": "Gen-Z Constructors Limited Company",
+      "alternateName": "Gen-Z Constructors",
+      "url": "https://{{ company_domain }}",
+      "logo": "https://{{ company_domain }}/static/images/logo.jpg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "{{ company_phone_display }}",
+        "contactType": "customer service",
+        "email": "{{ company_email }}",
+        "areaServed": "KE",
+        "availableLanguage": ["en", "sw"]
+      },
+      "sameAs": [
+        "https://facebook.com/genzconstructors",
+        "https://instagram.com/genzconstructors"
+      ]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://{{ company_domain }}/#localbusiness",
+      "name": "Gen-Z Constructors Limited Company",
+      "image": "https://{{ company_domain }}/static/images/logo.jpg",
+      "telephone": "{{ company_phone_display }}",
+      "email": "{{ company_email }}",
+      "url": "https://{{ company_domain }}",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "KE",
+        "addressRegion": "Nairobi / Kenya"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://{{ company_domain }}/#website",
+      "url": "https://{{ company_domain }}",
+      "name": "Gen-Z Constructors Limited Company",
+      "publisher": {
+        "@id": "https://{{ company_domain }}/#organization"
+      }
+    }
+  ]
+}
+</script>
