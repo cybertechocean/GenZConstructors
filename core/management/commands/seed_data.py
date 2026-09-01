@@ -22,6 +22,8 @@ class Command(BaseCommand):
         settings_obj.business_hours = "Mon - Fri: 8:00 AM - 5:00 PM | Sat: 8:00 AM - 1:00 PM"
         settings_obj.facebook_url = "https://facebook.com/genzconstructors"
         settings_obj.instagram_url = "https://instagram.com/genzconstructors"
+        settings_obj.x_url = "https://x.com/genzconstructors"
+        settings_obj.youtube_url = "https://youtube.com/@genzconstructors"
         settings_obj.logo = "branding/logo.jpg"
         settings_obj.favicon = "branding/logo.jpg"
         settings_obj.default_meta_title = "Gen-Z Constructors Limited Company | Construction & Building Solutions"

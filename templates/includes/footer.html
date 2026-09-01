@@ -23,19 +23,29 @@
         <p class="text-xs text-slate-400 leading-relaxed">
           Modern construction solutions, architectural innovation, and dependable structural delivery across Kenya.
         </p>
-        <div class="flex items-center gap-3 pt-2">
+        <div class="flex flex-wrap items-center gap-2.5 pt-2">
           {% if site_settings.facebook_url %}
           <a href="{{ site_settings.facebook_url }}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-[#08060A] border border-[#B98F3D]/40 flex items-center justify-center text-[#EDDAA0] hover:bg-[#B98F3D] hover:text-[#010B20] transition-colors" aria-label="Facebook">
-            <i data-lucide="facebook" class="w-4 h-4"></i>
+            <i class="fa-brands fa-facebook-f text-sm"></i>
           </a>
           {% endif %}
           {% if site_settings.instagram_url %}
           <a href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-[#08060A] border border-[#B98F3D]/40 flex items-center justify-center text-[#EDDAA0] hover:bg-[#B98F3D] hover:text-[#010B20] transition-colors" aria-label="Instagram">
-            <i data-lucide="instagram" class="w-4 h-4"></i>
+            <i class="fa-brands fa-instagram text-sm"></i>
+          </a>
+          {% endif %}
+          {% if site_settings.x_url %}
+          <a href="{{ site_settings.x_url }}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-[#08060A] border border-[#B98F3D]/40 flex items-center justify-center text-[#EDDAA0] hover:bg-[#B98F3D] hover:text-[#010B20] transition-colors" aria-label="X (formerly Twitter)">
+            <i class="fa-brands fa-x-twitter text-sm"></i>
+          </a>
+          {% endif %}
+          {% if site_settings.youtube_url %}
+          <a href="{{ site_settings.youtube_url }}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-[#08060A] border border-[#B98F3D]/40 flex items-center justify-center text-[#EDDAA0] hover:bg-[#B98F3D] hover:text-[#010B20] transition-colors" aria-label="YouTube">
+            <i class="fa-brands fa-youtube text-sm"></i>
           </a>
           {% endif %}
           <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-[#08060A] border border-[#25D366]/40 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors" aria-label="WhatsApp">
-            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <i class="fa-brands fa-whatsapp text-sm"></i>
           </a>
         </div>
       </div>

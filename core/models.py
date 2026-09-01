@@ -53,11 +53,23 @@ class SiteSettings(models.Model):
     )
     facebook_url = models.URLField(
         blank=True,
+        default="https://facebook.com",
         help_text="Official Facebook page URL"
     )
     instagram_url = models.URLField(
         blank=True,
+        default="https://instagram.com",
         help_text="Official Instagram profile URL"
+    )
+    x_url = models.URLField(
+        blank=True,
+        default="https://x.com",
+        help_text="Official X (Twitter) profile URL"
+    )
+    youtube_url = models.URLField(
+        blank=True,
+        default="https://youtube.com",
+        help_text="Official YouTube channel URL"
     )
     logo = models.ImageField(
         upload_to='branding/',

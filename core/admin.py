@@ -20,7 +20,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
             'fields': ('phone', 'whatsapp_number', 'email', 'address', 'business_hours', 'map_embed_url')
         }),
         ("Social Profiles", {
-            'fields': ('facebook_url', 'instagram_url')
+            'fields': ('facebook_url', 'instagram_url', 'x_url', 'youtube_url')
         }),
         ("Brand Assets", {
             'fields': ('logo', 'favicon')

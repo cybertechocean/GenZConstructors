@@ -23,12 +23,22 @@
       </a>
       {% if site_settings.facebook_url %}
       <a href="{{ site_settings.facebook_url }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0]" aria-label="Facebook">
-        <i data-lucide="facebook" class="w-3.5 h-3.5"></i>
+        <i class="fa-brands fa-facebook-f text-xs"></i>
       </a>
       {% endif %}
       {% if site_settings.instagram_url %}
       <a href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0]" aria-label="Instagram">
-        <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+        <i class="fa-brands fa-instagram text-xs"></i>
+      </a>
+      {% endif %}
+      {% if site_settings.x_url %}
+      <a href="{{ site_settings.x_url }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0]" aria-label="X (Twitter)">
+        <i class="fa-brands fa-x-twitter text-xs"></i>
+      </a>
+      {% endif %}
+      {% if site_settings.youtube_url %}
+      <a href="{{ site_settings.youtube_url }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0]" aria-label="YouTube">
+        <i class="fa-brands fa-youtube text-xs"></i>
       </a>
       {% endif %}
     </div>
