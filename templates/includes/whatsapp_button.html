@@ -1,7 +1,20 @@
-<!-- Floating WhatsApp Action Widget -->
-<a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="whatsapp-floating-btn group animate-pulse-subtle" aria-label="Chat with Gen-Z Constructors on WhatsApp">
-  <div class="relative flex items-center justify-center">
-    <i data-lucide="message-circle" class="w-5 h-5 fill-current"></i>
-  </div>
-  <span class="hidden sm:inline font-heading font-medium tracking-wide">WhatsApp Us</span>
-</a>
+<!-- Floating Actions: Phone Call & WhatsApp Us -->
+<div class="fixed-floating-actions" role="region" aria-label="Quick Communication">
+  
+  <!-- 1. Floating Phone Call Button (Positioned above WhatsApp) -->
+  <a href="tel:{{ company_phone_clean }}" class="phone-floating-btn group" aria-label="Call Gen-Z Constructors at {{ company_phone_display }}">
+    <div class="relative flex items-center justify-center">
+      <i class="fa-solid fa-phone-volume text-sm"></i>
+    </div>
+    <span class="hidden sm:inline font-heading font-bold tracking-wide">Call Now</span>
+  </a>
+
+  <!-- 2. Floating WhatsApp Button -->
+  <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="whatsapp-floating-btn group animate-pulse-subtle" aria-label="Chat with Gen-Z Constructors on WhatsApp">
+    <div class="relative flex items-center justify-center">
+      <i class="fa-brands fa-whatsapp text-base"></i>
+    </div>
+    <span class="hidden sm:inline font-heading font-medium tracking-wide">WhatsApp Us</span>
+  </a>
+
+</div>

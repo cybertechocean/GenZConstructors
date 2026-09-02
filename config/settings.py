@@ -1,9 +1,11 @@
 """
 Django settings for Gen-Z Constructors Limited Company project.
+Ready for production deployment on HostNali shared hosting (/home2/genzcons).
 """
 
 from pathlib import Path
 import os
+import sys
 from dotenv import load_dotenv
 from django.templatetags.static import static
 from django.urls import reverse_lazy
@@ -11,7 +13,7 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load environment variables from .env
+# Load environment variables from .env file
 load_dotenv(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
@@ -20,11 +22,26 @@ SECRET_KEY = os.getenv(
     'django-insecure-genz-constructors-production-secret-key-change-in-prod-2026'
 )
 
-DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1', 'yes')
+# DEBUG is True only if explicitly set to 'true' in .env
+DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 'yes')
 
 ALLOWED_HOSTS = [
     h.strip()
-    for h in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,genzconstructors.co.ke,www.genzconstructors.co.ke,*').split(',')
+    for h in os.getenv(
+        'ALLOWED_HOSTS',
+        'localhost,127.0.0.1,genzconstructors.co.ke,www.genzconstructors.co.ke'
+    ).split(',')
+    if h.strip()
+]
+
+# CSRF Trusted Origins for HTTPS
+csrf_origins_env = os.getenv(
+    'CSRF_TRUSTED_ORIGINS',
+    'genzconstructors.co.ke,www.genzconstructors.co.ke,127.0.0.1,localhost'
+)
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{h.strip()}" if not h.strip().startswith(('http://', 'https://')) else h.strip()
+    for h in csrf_origins_env.split(',')
     if h.strip()
 ]
 
@@ -80,12 +97,40 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 ASGI_APPLICATION = 'config.asgi.application'
 
-# Database
-# Default to SQLite for local development, support DATABASE_URL
-DATABASES = {
+# ==============================================================================
+# DATABASE CONFIGURATION (Supports MySQL, PostgreSQL, SQLite on Shared Hosting)
+# ==============================================================================
+db_engine = os.getenv('DB_ENGINE', '').strip()
+if db_engine:
+    DATABASES = {
+        'default': {
+            'ENGINE': db_engine,
+            'NAME': os.getenv('DB_NAME', 'genzcons_db'),
+            'USER': os.getenv('DB_USER', 'genzcons_user'),
+            'PASSWORD': os.getenv('DB_PASSWORD', ''),
+            'HOST': os.getenv('DB_HOST', 'localhost'),
+            'PORT': os.getenv('DB_PORT', '3306' if 'mysql' in db_engine else '5432'),
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+            } if 'mysql' in db_engine else {},
+        }
+    }
+else:
+    # Default to SQLite for local development or simple shared hosting
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+# ==============================================================================
+# CACHE CONFIGURATION (Database Cache for shared hosting performance)
+# ==============================================================================
+CACHES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'genz_cache_table',
     }
 }
 
@@ -127,6 +172,17 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ==============================================================================
+# PRODUCTION SECURITY HEADERS & SSL PROXY
+# ==============================================================================
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
 
 # ==============================================================================
 # DJANGO UNFOLD CONFIGURATION & THEME CUSTOMIZATION
@@ -253,7 +309,7 @@ EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True').lower() in ('true', '1', 'yes')
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'False').lower() in ('true', '1', 'yes')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'genzconstructors@gmail.com')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')  # Standard password or 16-character Gmail App Password
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')  # Standard password or 16-char Gmail App Password
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'Gen-Z Constructors <genzconstructors@gmail.com>')
 
 # Company Information Fallbacks
