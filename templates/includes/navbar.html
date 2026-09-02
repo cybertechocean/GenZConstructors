@@ -16,31 +16,23 @@
         <span>Nairobi, Kenya</span>
       </span>
     </div>
-    <div class="flex items-center gap-4">
-      <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[#25D366] hover:text-[#32E875] font-semibold transition-colors">
-        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-        <span>WhatsApp Us</span>
+    <div class="flex items-center gap-3">
+      <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[#25D366] hover:text-[#32E875] font-semibold transition-colors mr-1">
+        <i class="fa-brands fa-whatsapp text-xs"></i>
+        <span>WhatsApp</span>
       </a>
-      {% if site_settings.facebook_url %}
-      <a href="{{ site_settings.facebook_url }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0]" aria-label="Facebook">
+      <a href="{{ site_settings.facebook_url|default:'https://facebook.com' }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0] transition-colors" aria-label="Facebook">
         <i class="fa-brands fa-facebook-f text-xs"></i>
       </a>
-      {% endif %}
-      {% if site_settings.instagram_url %}
-      <a href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0]" aria-label="Instagram">
+      <a href="{{ site_settings.instagram_url|default:'https://instagram.com' }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0] transition-colors" aria-label="Instagram">
         <i class="fa-brands fa-instagram text-xs"></i>
       </a>
-      {% endif %}
-      {% if site_settings.x_url %}
-      <a href="{{ site_settings.x_url }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0]" aria-label="X (Twitter)">
+      <a href="{{ site_settings.x_url|default:'https://x.com' }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0] transition-colors" aria-label="X (Twitter)">
         <i class="fa-brands fa-x-twitter text-xs"></i>
       </a>
-      {% endif %}
-      {% if site_settings.youtube_url %}
-      <a href="{{ site_settings.youtube_url }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0]" aria-label="YouTube">
+      <a href="{{ site_settings.youtube_url|default:'https://youtube.com' }}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#EDDAA0] transition-colors" aria-label="YouTube">
         <i class="fa-brands fa-youtube text-xs"></i>
       </a>
-      {% endif %}
     </div>
   </div>
 </div>

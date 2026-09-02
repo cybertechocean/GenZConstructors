@@ -1,0 +1,75 @@
+/* ==============================================================================
+   GEN-Z CONSTRUCTORS - DJANGO UNFOLD CUSTOM BRAND STYLING
+   ============================================================================== */
+
+:root {
+  --color-primary-50: 241 237 223;   /* #F1EDDF Warm Ivory */
+  --color-primary-100: 237 218 160;  /* #EDDAA0 Champagne Gold */
+  --color-primary-400: 185 143 61;   /* #B98F3D Construction Gold */
+  --color-primary-500: 165 125 45;
+  --color-primary-600: 137 99 33;    /* #896321 Bronze Gold */
+  --color-primary-900: 1 11 32;      /* #010B20 Midnight Navy */
+  --color-primary-950: 8 6 10;       /* #08060A Deep Dark */
+}
+
+/* Login Page Custom Brand Background & Logo Enhancement */
+body.login {
+  background: #010B20 !important;
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(185, 143, 61, 0.15), transparent 60%),
+    linear-gradient(rgba(185, 143, 61, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(185, 143, 61, 0.05) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 28px 28px, 28px 28px !important;
+}
+
+/* Login Card Container */
+.login-container,
+div[class*="login"] form,
+.bg-white.dark\:bg-base-900.rounded-xl {
+  border: 1px solid rgba(185, 143, 61, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Brand Logo on Login Page & Header */
+img[src*="logo.jpg"] {
+  border-radius: 9999px !important;
+  border: 2px solid #B98F3D !important;
+  box-shadow: 0 0 20px rgba(185, 143, 61, 0.35) !important;
+  background-color: #010B20 !important;
+  object-fit: cover !important;
+}
+
+/* Primary Action Buttons in Unfold */
+button[type="submit"],
+.bg-primary-600,
+.bg-primary-500 {
+  background: linear-gradient(135deg, #EDDAA0 0%, #B98F3D 60%, #896321 100%) !important;
+  color: #010B20 !important;
+  font-weight: 700 !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(185, 143, 61, 0.3) !important;
+}
+
+button[type="submit"]:hover,
+.bg-primary-600:hover,
+.bg-primary-500:hover {
+  background: linear-gradient(135deg, #FFF0BE 0%, #EDDAA0 60%, #B98F3D 100%) !important;
+  color: #010B20 !important;
+  box-shadow: 0 6px 20px rgba(185, 143, 61, 0.45) !important;
+}
+
+/* Sidebar Active & Hover States */
+a[aria-current="page"],
+.sidebar-item-active {
+  background-color: rgba(185, 143, 61, 0.15) !important;
+  color: #EDDAA0 !important;
+  border-left: 3px solid #B98F3D !important;
+}
+
+/* Admin Input Focus States */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #B98F3D !important;
+  box-shadow: 0 0 0 2px rgba(185, 143, 61, 0.25) !important;
+}

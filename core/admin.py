@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from unfold.admin import ModelAdmin, TabularInline
 from .models import (
     SiteSettings, Service, Project, ProjectImage,
     ProcessStep, Testimonial, FAQ, Enquiry, ContactMessage
@@ -11,7 +12,7 @@ admin.site.index_title = "Website & Project Inquiries Management"
 
 
 @admin.register(SiteSettings)
-class SiteSettingsAdmin(admin.ModelAdmin):
+class SiteSettingsAdmin(ModelAdmin):
     fieldsets = (
         ("Company Identity", {
             'fields': ('business_name', 'tagline', 'website')
@@ -41,7 +42,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
 
 
 @admin.register(Service)
-class ServiceAdmin(admin.ModelAdmin):
+class ServiceAdmin(ModelAdmin):
     list_display = ('name', 'category', 'icon', 'featured', 'display_order', 'updated_at')
     list_filter = ('category', 'featured')
     search_fields = ('name', 'short_description', 'description')
@@ -49,14 +50,14 @@ class ServiceAdmin(admin.ModelAdmin):
     list_editable = ('featured', 'display_order')
 
 
-class ProjectImageInline(admin.TabularInline):
+class ProjectImageInline(TabularInline):
     model = ProjectImage
     extra = 2
     fields = ('image', 'caption', 'display_order')
 
 
 @admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
+class ProjectAdmin(ModelAdmin):
     list_display = ('title', 'category', 'location', 'status', 'featured', 'is_sample', 'display_order')
     list_filter = ('category', 'status', 'featured', 'is_sample')
     search_fields = ('title', 'location', 'description')
@@ -67,14 +68,14 @@ class ProjectAdmin(admin.ModelAdmin):
 
 
 @admin.register(ProcessStep)
-class ProcessStepAdmin(admin.ModelAdmin):
+class ProcessStepAdmin(ModelAdmin):
     list_display = ('step_number', 'title', 'icon', 'display_order', 'active')
     list_editable = ('display_order', 'active')
     ordering = ('step_number',)
 
 
 @admin.register(Testimonial)
-class TestimonialAdmin(admin.ModelAdmin):
+class TestimonialAdmin(ModelAdmin):
     list_display = ('client_name', 'role_or_company', 'rating', 'featured', 'is_placeholder', 'created_at')
     list_filter = ('rating', 'featured', 'is_placeholder')
     search_fields = ('client_name', 'role_or_company', 'testimonial')
@@ -82,7 +83,7 @@ class TestimonialAdmin(admin.ModelAdmin):
 
 
 @admin.register(FAQ)
-class FAQAdmin(admin.ModelAdmin):
+class FAQAdmin(ModelAdmin):
     list_display = ('question', 'category', 'display_order', 'active')
     list_filter = ('category', 'active')
     search_fields = ('question', 'answer')
@@ -90,7 +91,7 @@ class FAQAdmin(admin.ModelAdmin):
 
 
 @admin.register(Enquiry)
-class EnquiryAdmin(admin.ModelAdmin):
+class EnquiryAdmin(ModelAdmin):
     list_display = (
         'id', 'full_name', 'phone', 'email', 'project_type',
         'budget', 'status', 'created_at', 'has_attachment'
@@ -141,7 +142,7 @@ class EnquiryAdmin(admin.ModelAdmin):
 
 
 @admin.register(ContactMessage)
-class ContactMessageAdmin(admin.ModelAdmin):
+class ContactMessageAdmin(ModelAdmin):
     list_display = ('full_name', 'phone', 'email', 'subject', 'is_read', 'created_at')
     list_filter = ('is_read', 'created_at')
     search_fields = ('full_name', 'phone', 'email', 'subject', 'message')
