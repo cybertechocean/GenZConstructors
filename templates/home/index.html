@@ -6,65 +6,65 @@
 {% block content %}
 
 <!-- 1. HERO SECTION -->
-<section class="relative bg-[#010B20] text-[#F1EDDF] overflow-hidden py-20 lg:py-28 border-b border-[#B98F3D]/30">
+<section class="relative bg-[#010B20] text-[#F1EDDF] overflow-hidden py-16 sm:py-20 lg:py-28 border-b border-[#B98F3D]/30 w-full max-w-full">
   <!-- Blueprint Grid Pattern Overlay -->
   <div class="absolute inset-0 bg-blueprint opacity-60 pointer-events-none"></div>
   
   <!-- Subtle Ambient Glow -->
-  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#B98F3D]/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 sm:w-96 h-80 sm:h-96 bg-[#B98F3D]/10 rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
       
       <!-- Left Column: Copy & Actions -->
       <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
         
         <!-- Eyebrow Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#08060A] border border-[#B98F3D]/50 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-[#B98F3D] animate-pulse"></span>
-          <span>Gen-Z Constructors Limited Company</span>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#08060A] border border-[#B98F3D]/50 text-[10px] sm:text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider shadow-sm max-w-full">
+          <span class="w-2 h-2 rounded-full bg-[#B98F3D] animate-pulse shrink-0"></span>
+          <span class="truncate">Gen-Z Constructors Limited Company</span>
         </div>
 
         <!-- Main H1 Headline -->
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-white leading-tight">
+        <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-white leading-tight break-words">
           BUILDING YOUR <span class="text-gradient-gold">VISION</span>.<br>
           CONSTRUCTING YOUR <span class="text-gradient-gold">FUTURE</span>.
         </h1>
 
         <!-- Supporting Paragraph -->
-        <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+        <p class="text-sm sm:text-base lg:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
           From planning and architectural design to full construction and specialized building solutions, Gen-Z Constructors is focused on turning ideas into practical, enduring, and quality spaces.
         </p>
 
         <!-- CTA Buttons Group -->
-        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-          <a href="{% url 'core:request_quote' %}" class="btn btn-primary w-full sm:w-auto text-sm uppercase tracking-wider py-3.5 px-7">
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
+          <a href="{% url 'core:request_quote' %}" class="btn btn-primary w-full sm:w-auto text-xs sm:text-sm uppercase tracking-wider py-3.5 px-6 sm:px-7">
             <span>Start Your Project</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
-          <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-brand w-full sm:w-auto text-sm py-3.5 px-6">
+          <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-brand w-full sm:w-auto text-xs sm:text-sm py-3.5 px-5 sm:px-6">
             <i data-lucide="message-circle" class="w-4 h-4"></i>
             <span>WhatsApp Us</span>
           </a>
-          <a href="tel:{{ company_phone_clean }}" class="btn btn-outline-ivory w-full sm:w-auto text-sm py-3.5 px-6">
+          <a href="tel:{{ company_phone_clean }}" class="btn btn-outline-ivory w-full sm:w-auto text-xs sm:text-sm py-3.5 px-5 sm:px-6">
             <i data-lucide="phone-call" class="w-4 h-4 text-[#B98F3D]"></i>
             <span>Call {{ company_phone_display }}</span>
           </a>
         </div>
 
         <!-- Value Highlights -->
-        <div class="pt-6 grid grid-cols-3 gap-4 border-t border-white/10 text-left">
+        <div class="pt-6 grid grid-cols-3 gap-2 sm:gap-4 border-t border-white/10 text-center sm:text-left">
           <div>
-            <span class="block text-xl font-heading font-bold text-[#EDDAA0]">Precision</span>
-            <span class="text-xs text-slate-400">Engineering & Design</span>
+            <span class="block text-sm sm:text-xl font-heading font-bold text-[#EDDAA0]">Precision</span>
+            <span class="text-[10px] sm:text-xs text-slate-400 block break-words">Engineering & Design</span>
           </div>
           <div>
-            <span class="block text-xl font-heading font-bold text-[#EDDAA0]">Transparent</span>
-            <span class="text-xs text-slate-400">Itemized Costing</span>
+            <span class="block text-sm sm:text-xl font-heading font-bold text-[#EDDAA0]">Transparent</span>
+            <span class="text-[10px] sm:text-xs text-slate-400 block break-words">Itemized Costing</span>
           </div>
           <div>
-            <span class="block text-xl font-heading font-bold text-[#EDDAA0]">Quality</span>
-            <span class="text-xs text-slate-400">Structural Delivery</span>
+            <span class="block text-sm sm:text-xl font-heading font-bold text-[#EDDAA0]">Quality</span>
+            <span class="text-[10px] sm:text-xs text-slate-400 block break-words">Structural Delivery</span>
           </div>
         </div>
 
@@ -72,19 +72,19 @@
 
       <!-- Right Column: Visual Shield Crest Card -->
       <div class="lg:col-span-5 flex justify-center">
-        <div class="relative w-full max-w-md bg-[#08060A]/80 border border-[#B98F3D]/40 rounded-2xl p-8 shadow-2xl backdrop-blur-md arch-corner">
+        <div class="relative w-full max-w-md bg-[#08060A]/80 border border-[#B98F3D]/40 rounded-2xl p-5 sm:p-8 shadow-2xl backdrop-blur-md arch-corner">
           
-          <div class="flex flex-col items-center text-center space-y-6">
+          <div class="flex flex-col items-center text-center space-y-5 sm:space-y-6">
             <!-- Brand Crest -->
-            <div class="relative w-40 h-40 rounded-full border-4 border-[#B98F3D] p-1.5 shadow-2xl bg-[#010B20]">
+            <div class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-[#B98F3D] p-1.5 shadow-2xl bg-[#010B20]">
               <img src="{% static 'images/logo.jpg' %}" alt="Gen-Z Constructors Seal" class="w-full h-full object-cover rounded-full">
             </div>
 
             <div class="space-y-2">
-              <span class="text-xs font-heading uppercase tracking-widest text-[#B98F3D] font-bold block">
+              <span class="text-[10px] sm:text-xs font-heading uppercase tracking-widest text-[#B98F3D] font-bold block">
                 Official Construction Partner
               </span>
-              <h3 class="text-xl font-heading font-bold text-white">
+              <h3 class="text-lg sm:text-xl font-heading font-bold text-white">
                 Modern Building Solutions
               </h3>
               <p class="text-xs text-slate-300">
@@ -104,7 +104,7 @@
               <p class="text-xs text-slate-300">
                 Have architectural drawings or building ideas? Submit your details for a tailored breakdown.
               </p>
-              <a href="{% url 'core:request_quote' %}" class="block text-center text-xs font-heading font-bold text-[#EDDAA0] hover:text-white py-1.5 border border-[#B98F3D]/40 rounded bg-white/5 hover:bg-[#B98F3D]/20 transition-colors">
+              <a href="{% url 'core:request_quote' %}" class="block text-center text-xs font-heading font-bold text-[#EDDAA0] hover:text-white py-2 border border-[#B98F3D]/40 rounded bg-white/5 hover:bg-[#B98F3D]/20 transition-colors">
                 Get a Free Consultation →
               </a>
             </div>
@@ -119,77 +119,77 @@
 </section>
 
 <!-- 2. TRUST / CAPABILITIES STRIP -->
-<section class="bg-[#08060A] text-[#F1EDDF] py-5 border-b border-[#B98F3D]/20 overflow-hidden">
+<section class="bg-[#08060A] text-[#F1EDDF] py-4 sm:py-5 border-b border-[#B98F3D]/20 overflow-hidden w-full max-w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-wrap items-center justify-between gap-6 text-xs sm:text-sm font-heading font-semibold uppercase tracking-wider text-slate-300">
+    <div class="flex flex-wrap items-center justify-center sm:justify-between gap-3 sm:gap-6 text-xs sm:text-sm font-heading font-semibold uppercase tracking-wider text-slate-300">
       <span class="flex items-center gap-2 text-[#EDDAA0]">
-        <i data-lucide="shield-check" class="w-4 h-4 text-[#B98F3D]"></i>
+        <i data-lucide="shield-check" class="w-4 h-4 text-[#B98F3D] shrink-0"></i>
         <span>Full-Cycle Construction</span>
       </span>
-      <span class="hidden sm:inline text-white/20">&bull;</span>
+      <span class="hidden md:inline text-white/20">&bull;</span>
       <span class="flex items-center gap-2">
-        <i data-lucide="pen-tool" class="w-4 h-4 text-[#B98F3D]"></i>
+        <i data-lucide="pen-tool" class="w-4 h-4 text-[#B98F3D] shrink-0"></i>
         <span>Architectural Design</span>
       </span>
-      <span class="hidden sm:inline text-white/20">&bull;</span>
+      <span class="hidden md:inline text-white/20">&bull;</span>
       <span class="flex items-center gap-2">
-        <i data-lucide="hard-hat" class="w-4 h-4 text-[#B98F3D]"></i>
+        <i data-lucide="hard-hat" class="w-4 h-4 text-[#B98F3D] shrink-0"></i>
         <span>Structural Engineering</span>
       </span>
-      <span class="hidden sm:inline text-white/20">&bull;</span>
+      <span class="hidden md:inline text-white/20">&bull;</span>
       <span class="flex items-center gap-2">
-        <i data-lucide="hammer" class="w-4 h-4 text-[#B98F3D]"></i>
-        <span>Renovations & Remodeling</span>
+        <i data-lucide="hammer" class="w-4 h-4 text-[#B98F3D] shrink-0"></i>
+        <span>Renovations</span>
       </span>
-      <span class="hidden sm:inline text-white/20">&bull;</span>
+      <span class="hidden md:inline text-white/20">&bull;</span>
       <span class="flex items-center gap-2">
-        <i data-lucide="droplet" class="w-4 h-4 text-[#B98F3D]"></i>
-        <span>Biodigester Solutions</span>
+        <i data-lucide="droplet" class="w-4 h-4 text-[#B98F3D] shrink-0"></i>
+        <span>Biodigesters</span>
       </span>
     </div>
   </div>
 </section>
 
 <!-- 3. ABOUT INTRODUCTION (SPLIT SECTION) -->
-<section class="py-20 lg:py-24 bg-[#F8F7F3] bg-blueprint-subtle">
+<section class="py-16 sm:py-20 lg:py-24 bg-[#F8F7F3] bg-blueprint-subtle overflow-hidden w-full max-w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
       
       <!-- Left: Architectural Graphic / Card -->
       <div class="lg:col-span-5">
-        <div class="card-brand p-8 bg-white border border-[#E7E2D8] shadow-lg rounded-2xl relative arch-corner">
+        <div class="card-brand p-6 sm:p-8 bg-white border border-[#E7E2D8] shadow-lg rounded-2xl relative arch-corner">
           <div class="w-12 h-12 rounded-xl bg-[#010B20] text-[#B98F3D] flex items-center justify-center mb-6 shadow-md">
             <i data-lucide="compass" class="w-6 h-6"></i>
           </div>
           <span class="text-xs font-heading font-bold uppercase tracking-widest text-[#B98F3D] block mb-2">
             Engineering & Construction Standard
           </span>
-          <h3 class="text-2xl font-heading font-bold text-[#010B20] mb-4 leading-snug">
+          <h3 class="text-xl sm:text-2xl font-heading font-bold text-[#010B20] mb-4 leading-snug">
             Built for Durability, Designed for Modern Living.
           </h3>
-          <p class="text-sm text-slate-600 leading-relaxed mb-6">
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
             We bridge the gap between creative architectural vision and rigorous construction execution. Every beam, column, finish, and fixture is delivered with structural discipline.
           </p>
-          <div class="p-4 rounded-lg bg-[#FAF8F2] border border-[#B98F3D]/20 flex items-center justify-between text-xs font-heading font-semibold text-[#010B20]">
+          <div class="p-3.5 rounded-lg bg-[#FAF8F2] border border-[#B98F3D]/20 flex items-center justify-between text-xs font-heading font-semibold text-[#010B20]">
             <span>Reliable Milestone Delivery</span>
-            <i data-lucide="check-circle" class="w-4 h-4 text-[#B98F3D]"></i>
+            <i data-lucide="check-circle" class="w-4 h-4 text-[#B98F3D] shrink-0"></i>
           </div>
         </div>
       </div>
 
       <!-- Right: Detailed Overview -->
-      <div class="lg:col-span-7 space-y-6">
+      <div class="lg:col-span-7 space-y-5 sm:space-y-6">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#010B20] text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
           Who We Are
         </div>
-        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-[#010B20] leading-tight">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-[#010B20] leading-tight">
           Building Ideas Into Real, Functional Spaces.
         </h2>
         <div class="gold-divider"></div>
-        <p class="text-base text-slate-700 leading-relaxed">
+        <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
           Gen-Z Constructors Limited Company is a modern construction and building solutions enterprise dedicated to delivering residential, commercial, and specialized infrastructure projects across Kenya.
         </p>
-        <p class="text-sm text-slate-600 leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
           Whether you are embarking on a new custom residential home, expanding commercial premises, renovating existing structures, or requiring precision architectural plans, our team provides practical guidance from the initial sketch to final key handover.
         </p>
 
@@ -214,12 +214,12 @@
           </div>
         </div>
 
-        <div class="pt-4 flex items-center gap-4">
-          <a href="{% url 'core:about' %}" class="btn btn-secondary text-xs uppercase tracking-wider py-3 px-6">
+        <div class="pt-4 flex flex-wrap items-center gap-3 sm:gap-4">
+          <a href="{% url 'core:about' %}" class="btn btn-secondary text-xs uppercase tracking-wider py-3 px-5 sm:px-6">
             <span>About Gen-Z Constructors</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
-          <a href="{% url 'core:process' %}" class="btn btn-outline-gold text-xs uppercase tracking-wider py-3 px-6">
+          <a href="{% url 'core:process' %}" class="btn btn-outline-gold text-xs uppercase tracking-wider py-3 px-5 sm:px-6">
             <span>Our 7-Step Process</span>
           </a>
         </div>
@@ -231,43 +231,43 @@
 </section>
 
 <!-- 4. SERVICES SECTION (WHITE CARDS) -->
-<section class="py-20 lg:py-24 bg-white border-y border-[#E7E2D8]">
+<section class="py-16 sm:py-20 lg:py-24 bg-white border-y border-[#E7E2D8] overflow-hidden w-full max-w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Header -->
-    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-4">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#010B20] text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
         Our Construction Solutions
       </div>
-      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-[#010B20]">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-[#010B20]">
         Comprehensive Building & Architectural Services
       </h2>
       <div class="gold-divider mx-auto"></div>
-      <p class="text-base text-slate-600">
+      <p class="text-xs sm:text-base text-slate-600">
         Practical building solutions designed to move your project seamlessly from concept to structural completion.
       </p>
     </div>
 
     <!-- Services Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
       {% for service in featured_services %}
-      <div class="card-brand p-8 flex flex-col justify-between group">
+      <div class="card-brand p-6 sm:p-8 flex flex-col justify-between group">
         <div>
           <!-- Icon & Category -->
           <div class="flex items-center justify-between mb-6">
-            <div class="w-14 h-14 rounded-xl bg-[#010B20] text-[#B98F3D] flex items-center justify-center group-hover:bg-[#B98F3D] group-hover:text-[#010B20] transition-colors shadow-md">
-              <i data-lucide="{{ service.icon }}" class="w-7 h-7"></i>
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-[#010B20] text-[#B98F3D] flex items-center justify-center group-hover:bg-[#B98F3D] group-hover:text-[#010B20] transition-colors shadow-md shrink-0">
+              <i data-lucide="{{ service.icon }}" class="w-6 h-6 sm:w-7 sm:h-7"></i>
             </div>
-            <span class="text-[11px] font-heading font-semibold uppercase tracking-wider text-[#896321] px-2.5 py-1 rounded bg-[#FAF8F2] border border-[#B98F3D]/20">
+            <span class="text-[10px] sm:text-[11px] font-heading font-semibold uppercase tracking-wider text-[#896321] px-2.5 py-1 rounded bg-[#FAF8F2] border border-[#B98F3D]/20">
               {{ service.get_category_display }}
             </span>
           </div>
 
           <!-- Title & Description -->
-          <h3 class="text-xl font-heading font-bold text-[#010B20] mb-3 group-hover:text-[#896321] transition-colors">
+          <h3 class="text-lg sm:text-xl font-heading font-bold text-[#010B20] mb-3 group-hover:text-[#896321] transition-colors">
             {{ service.name }}
           </h3>
-          <p class="text-sm text-slate-600 leading-relaxed mb-6">
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
             {{ service.short_description }}
           </p>
         </div>
@@ -287,8 +287,8 @@
     </div>
 
     <!-- View All Services CTA -->
-    <div class="text-center mt-12">
-      <a href="{% url 'core:services' %}" class="btn btn-secondary text-xs uppercase tracking-wider py-3.5 px-8">
+    <div class="text-center mt-10 sm:mt-12">
+      <a href="{% url 'core:services' %}" class="btn btn-secondary text-xs uppercase tracking-wider py-3.5 px-6 sm:px-8">
         <span>Explore All Services & Solutions</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
@@ -298,36 +298,36 @@
 </section>
 
 <!-- 5. WHY CHOOSE GEN-Z CONSTRUCTORS (NAVY SECTION) -->
-<section class="py-20 lg:py-24 bg-[#010B20] text-[#F1EDDF] relative overflow-hidden border-b border-[#B98F3D]/30">
+<section class="py-16 sm:py-20 lg:py-24 bg-[#010B20] text-[#F1EDDF] relative overflow-hidden border-b border-[#B98F3D]/30 w-full max-w-full">
   <div class="absolute inset-0 bg-blueprint opacity-40 pointer-events-none"></div>
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
       
       <!-- Left Column: Header & Value Statement -->
-      <div class="lg:col-span-5 space-y-6">
+      <div class="lg:col-span-5 space-y-5 sm:space-y-6">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#08060A] border border-[#B98F3D]/40 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
           Why Gen-Z Constructors
         </div>
-        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white leading-tight">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white leading-tight">
           A Modern, Transparent Approach to Building.
         </h2>
         <div class="gold-divider"></div>
-        <p class="text-base text-slate-300 leading-relaxed">
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
           We combine contemporary digital communication with tried-and-tested construction engineering, eliminating the common headaches of building projects.
         </p>
         <div class="space-y-3 pt-2">
-          <div class="flex items-center gap-3 text-sm text-[#EDDAA0] font-heading font-semibold">
-            <i data-lucide="check-circle" class="w-5 h-5 text-[#B98F3D]"></i>
+          <div class="flex items-center gap-3 text-xs sm:text-sm text-[#EDDAA0] font-heading font-semibold">
+            <i data-lucide="check-circle" class="w-4 h-4 sm:w-5 sm:h-5 text-[#B98F3D] shrink-0"></i>
             <span>No hidden construction costs</span>
           </div>
-          <div class="flex items-center gap-3 text-sm text-[#EDDAA0] font-heading font-semibold">
-            <i data-lucide="check-circle" class="w-5 h-5 text-[#B98F3D]"></i>
+          <div class="flex items-center gap-3 text-xs sm:text-sm text-[#EDDAA0] font-heading font-semibold">
+            <i data-lucide="check-circle" class="w-4 h-4 sm:w-5 sm:h-5 text-[#B98F3D] shrink-0"></i>
             <span>Scheduled progress reviews & site updates</span>
           </div>
-          <div class="flex items-center gap-3 text-sm text-[#EDDAA0] font-heading font-semibold">
-            <i data-lucide="check-circle" class="w-5 h-5 text-[#B98F3D]"></i>
+          <div class="flex items-center gap-3 text-xs sm:text-sm text-[#EDDAA0] font-heading font-semibold">
+            <i data-lucide="check-circle" class="w-4 h-4 sm:w-5 sm:h-5 text-[#B98F3D] shrink-0"></i>
             <span>Quality materials & workmanship warranty</span>
           </div>
         </div>
@@ -339,43 +339,43 @@
       </div>
 
       <!-- Right Column: 4 Feature Grid Cards -->
-      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         
-        <div class="card-dark p-6 space-y-3">
-          <div class="w-12 h-12 rounded-lg bg-[#08060A] border border-[#B98F3D]/40 text-[#B98F3D] flex items-center justify-center">
-            <i data-lucide="clipboard-check" class="w-6 h-6"></i>
+        <div class="card-dark p-5 sm:p-6 space-y-3">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#08060A] border border-[#B98F3D]/40 text-[#B98F3D] flex items-center justify-center shrink-0">
+            <i data-lucide="clipboard-check" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           </div>
-          <h3 class="text-lg font-heading font-bold text-white">Itemized BOQ Costing</h3>
+          <h3 class="text-base sm:text-lg font-heading font-bold text-white">Itemized BOQ Costing</h3>
           <p class="text-xs text-slate-300 leading-relaxed">
             Detailed Bill of Quantities so you know exactly what materials, labor, and milestones are budgeted for.
           </p>
         </div>
 
-        <div class="card-dark p-6 space-y-3">
-          <div class="w-12 h-12 rounded-lg bg-[#08060A] border border-[#B98F3D]/40 text-[#B98F3D] flex items-center justify-center">
-            <i data-lucide="layers" class="w-6 h-6"></i>
+        <div class="card-dark p-5 sm:p-6 space-y-3">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#08060A] border border-[#B98F3D]/40 text-[#B98F3D] flex items-center justify-center shrink-0">
+            <i data-lucide="layers" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           </div>
-          <h3 class="text-lg font-heading font-bold text-white">Integrated Architecture</h3>
+          <h3 class="text-base sm:text-lg font-heading font-bold text-white">Integrated Architecture</h3>
           <p class="text-xs text-slate-300 leading-relaxed">
             Designers and builders working in synergy to ensure what is drawn is accurately built on site.
           </p>
         </div>
 
-        <div class="card-dark p-6 space-y-3">
-          <div class="w-12 h-12 rounded-lg bg-[#08060A] border border-[#B98F3D]/40 text-[#B98F3D] flex items-center justify-center">
-            <i data-lucide="message-square" class="w-6 h-6"></i>
+        <div class="card-dark p-5 sm:p-6 space-y-3">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#08060A] border border-[#B98F3D]/40 text-[#B98F3D] flex items-center justify-center shrink-0">
+            <i data-lucide="message-square" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           </div>
-          <h3 class="text-lg font-heading font-bold text-white">Direct WhatsApp Updates</h3>
+          <h3 class="text-base sm:text-lg font-heading font-bold text-white">Direct WhatsApp Updates</h3>
           <p class="text-xs text-slate-300 leading-relaxed">
             Fast, accessible digital reporting with site photos and progress summaries delivered to your phone.
           </p>
         </div>
 
-        <div class="card-dark p-6 space-y-3">
-          <div class="w-12 h-12 rounded-lg bg-[#08060A] border border-[#B98F3D]/40 text-[#B98F3D] flex items-center justify-center">
-            <i data-lucide="shield" class="w-6 h-6"></i>
+        <div class="card-dark p-5 sm:p-6 space-y-3">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#08060A] border border-[#B98F3D]/40 text-[#B98F3D] flex items-center justify-center shrink-0">
+            <i data-lucide="shield" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           </div>
-          <h3 class="text-lg font-heading font-bold text-white">Structural Integrity</h3>
+          <h3 class="text-base sm:text-lg font-heading font-bold text-white">Structural Integrity</h3>
           <p class="text-xs text-slate-300 leading-relaxed">
             Engineered adherence to structural loads, soil stabilization, and Kenyan regulatory building codes.
           </p>
@@ -389,37 +389,37 @@
 </section>
 
 <!-- 6. 7-STEP CONSTRUCTION PROCESS TIMELINE -->
-<section class="py-20 lg:py-24 bg-[#F8F7F3]">
+<section class="py-16 sm:py-20 lg:py-24 bg-[#F8F7F3] overflow-hidden w-full max-w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-4">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#010B20] text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
         Structured Workflow
       </div>
-      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-[#010B20]">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-[#010B20]">
         Our 7-Step Construction Process
       </h2>
       <div class="gold-divider mx-auto"></div>
-      <p class="text-base text-slate-600">
+      <p class="text-xs sm:text-base text-slate-600">
         From initial concept consultation to final key handover, our transparent pathway guarantees precision.
       </p>
     </div>
 
     <!-- Timeline Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
       {% for step in process_steps %}
-      <div class="card-brand p-6 relative flex flex-col justify-between">
+      <div class="card-brand p-5 sm:p-6 relative flex flex-col justify-between">
         <div>
           <!-- Step Number Marker -->
           <div class="flex items-center justify-between mb-4">
-            <span class="text-2xl font-heading font-extrabold text-[#B98F3D]">
+            <span class="text-xl sm:text-2xl font-heading font-extrabold text-[#B98F3D]">
               0{{ step.step_number }}
             </span>
-            <div class="w-10 h-10 rounded-lg bg-[#010B20] text-[#EDDAA0] flex items-center justify-center">
-              <i data-lucide="{{ step.icon|default:'check-circle' }}" class="w-5 h-5"></i>
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#010B20] text-[#EDDAA0] flex items-center justify-center shrink-0">
+              <i data-lucide="{{ step.icon|default:'check-circle' }}" class="w-4 h-4 sm:w-5 sm:h-5"></i>
             </div>
           </div>
-          <h3 class="text-lg font-heading font-bold text-[#010B20] mb-2">
+          <h3 class="text-base sm:text-lg font-heading font-bold text-[#010B20] mb-2">
             {{ step.title }}
           </h3>
           <p class="text-xs text-slate-600 leading-relaxed">
@@ -430,8 +430,8 @@
       {% endfor %}
     </div>
 
-    <div class="text-center mt-12">
-      <a href="{% url 'core:process' %}" class="btn btn-secondary text-xs uppercase tracking-wider py-3 px-8">
+    <div class="text-center mt-10 sm:mt-12">
+      <a href="{% url 'core:process' %}" class="btn btn-secondary text-xs uppercase tracking-wider py-3 px-6 sm:px-8">
         <span>View Full Workflow Details</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
@@ -441,15 +441,15 @@
 </section>
 
 <!-- 7. FEATURED PROJECTS SHOWCASE -->
-<section class="py-20 lg:py-24 bg-[#08060A] text-[#F1EDDF] border-t border-[#B98F3D]/20">
+<section class="py-16 sm:py-20 lg:py-24 bg-[#08060A] text-[#F1EDDF] border-t border-[#B98F3D]/20 overflow-hidden w-full max-w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
       <div class="space-y-3">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#010B20] border border-[#B98F3D]/40 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
           Portfolio
         </div>
-        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white">
           Featured Work & Project Showcase
         </h2>
         <div class="gold-divider"></div>
@@ -461,13 +461,13 @@
     </div>
 
     <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
       {% for project in featured_projects %}
       <div class="card-dark overflow-hidden flex flex-col justify-between group">
         <!-- Thumbnail / Badge Area -->
-        <div class="relative h-48 bg-[#010B20] flex items-center justify-center p-4 border-b border-white/10">
+        <div class="relative h-44 sm:h-48 bg-[#010B20] flex items-center justify-center p-4 border-b border-white/10">
           <div class="text-center space-y-2">
-            <i data-lucide="building-2" class="w-10 h-10 text-[#B98F3D] mx-auto opacity-70 group-hover:scale-110 transition-transform"></i>
+            <i data-lucide="building-2" class="w-9 h-9 sm:w-10 sm:h-10 text-[#B98F3D] mx-auto opacity-70 group-hover:scale-110 transition-transform"></i>
             <span class="text-xs font-heading font-bold text-[#EDDAA0] block">
               {{ project.get_category_display }}
             </span>
@@ -484,9 +484,9 @@
         </div>
 
         <!-- Content -->
-        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+        <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
           <div>
-            <h3 class="text-lg font-heading font-bold text-white group-hover:text-[#EDDAA0] transition-colors mb-2">
+            <h3 class="text-base sm:text-lg font-heading font-bold text-white group-hover:text-[#EDDAA0] transition-colors mb-2">
               {{ project.title }}
             </h3>
             <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed">
@@ -512,22 +512,22 @@
 </section>
 
 <!-- 8. TESTIMONIALS SECTION -->
-<section class="py-20 lg:py-24 bg-[#F8F7F3] border-b border-[#E7E2D8]">
+<section class="py-16 sm:py-20 lg:py-24 bg-[#F8F7F3] border-b border-[#E7E2D8] overflow-hidden w-full max-w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-4">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#010B20] text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
         Client Stories
       </div>
-      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-[#010B20]">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-[#010B20]">
         What Our Clients Say
       </h2>
       <div class="gold-divider mx-auto"></div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
       {% for t in testimonials %}
-      <div class="card-brand p-8 bg-white border border-[#E7E2D8] rounded-2xl relative arch-corner flex flex-col justify-between">
+      <div class="card-brand p-6 sm:p-8 bg-white border border-[#E7E2D8] rounded-2xl relative arch-corner flex flex-col justify-between">
         <div class="space-y-4">
           <!-- Rating Stars -->
           <div class="flex items-center gap-1 text-[#B98F3D]">
@@ -535,7 +535,7 @@
             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
             {% endfor %}
           </div>
-          <p class="text-sm text-slate-700 italic leading-relaxed">
+          <p class="text-xs sm:text-sm text-slate-700 italic leading-relaxed">
             "{{ t.testimonial }}"
           </p>
         </div>
@@ -544,7 +544,7 @@
             <span class="font-heading font-bold text-sm text-[#010B20] block">{{ t.client_name }}</span>
             <span class="text-xs text-slate-500">{{ t.role_or_company }}</span>
           </div>
-          <i data-lucide="quote" class="w-6 h-6 text-[#B98F3D]/40"></i>
+          <i data-lucide="quote" class="w-5 h-5 sm:w-6 sm:h-6 text-[#B98F3D]/40 shrink-0"></i>
         </div>
       </div>
       {% empty %}
@@ -558,14 +558,14 @@
 </section>
 
 <!-- 9. FAQ ACCORDION SECTION -->
-<section class="py-20 lg:py-24 bg-white border-b border-[#E7E2D8]">
+<section class="py-16 sm:py-20 lg:py-24 bg-white border-b border-[#E7E2D8] overflow-hidden w-full max-w-full">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <div class="text-center max-w-2xl mx-auto mb-14 space-y-4">
+    <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14 space-y-4">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#010B20] text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
         Got Questions?
       </div>
-      <h2 class="text-3xl font-heading font-bold text-[#010B20]">
+      <h2 class="text-2xl sm:text-3xl font-heading font-bold text-[#010B20]">
         Frequently Asked Questions
       </h2>
       <div class="gold-divider mx-auto"></div>
@@ -574,13 +574,13 @@
     <div class="space-y-4">
       {% for faq in faqs %}
       <div class="border border-[#E7E2D8] rounded-xl overflow-hidden bg-[#FAF8F2] transition-colors">
-        <button type="button" class="faq-toggle w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none" data-target="faq-{{ faq.id }}">
-          <span class="font-heading font-bold text-sm sm:text-base text-[#010B20]">
+        <button type="button" class="faq-toggle w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 focus:outline-none" data-target="faq-{{ faq.id }}">
+          <span class="font-heading font-bold text-xs sm:text-base text-[#010B20]">
             {{ faq.question }}
           </span>
-          <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-[#B98F3D] shrink-0 transition-transform duration-200"></i>
+          <i data-lucide="chevron-down" class="faq-icon w-4 h-4 sm:w-5 sm:h-5 text-[#B98F3D] shrink-0 transition-transform duration-200"></i>
         </button>
-        <div id="faq-{{ faq.id }}" class="faq-content hidden px-5 pb-5 pt-1 text-sm text-slate-600 leading-relaxed border-t border-[#E7E2D8]/60">
+        <div id="faq-{{ faq.id }}" class="faq-content hidden px-4 sm:px-5 pb-4 sm:pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-[#E7E2D8]/60">
           {{ faq.answer }}
         </div>
       </div>
@@ -591,33 +591,33 @@
 </section>
 
 <!-- 10. FINAL HIGH-CONVERSION CTA SECTION -->
-<section class="py-20 lg:py-24 bg-[#010B20] text-[#F1EDDF] relative overflow-hidden">
+<section class="py-16 sm:py-20 lg:py-24 bg-[#010B20] text-[#F1EDDF] relative overflow-hidden w-full max-w-full">
   <div class="absolute inset-0 bg-blueprint opacity-50 pointer-events-none"></div>
 
-  <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+  <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 sm:space-y-8">
     
     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#08060A] border border-[#B98F3D]/50 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
       Your Vision Starts Here
     </div>
 
-    <h2 class="text-3xl sm:text-5xl font-heading font-extrabold text-white leading-tight">
+    <h2 class="text-2xl sm:text-4xl md:text-5xl font-heading font-extrabold text-white leading-tight break-words">
       Ready to Build Something <span class="text-gradient-gold">Great</span>?
     </h2>
 
-    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+    <p class="text-sm sm:text-base lg:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
       Have a construction or design project in mind? Contact Gen-Z Constructors today for an itemized estimate and dedicated expert consultation.
     </p>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-      <a href="{% url 'core:request_quote' %}" class="btn btn-primary w-full sm:w-auto text-sm uppercase tracking-wider py-3.5 px-8">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
+      <a href="{% url 'core:request_quote' %}" class="btn btn-primary w-full sm:w-auto text-xs sm:text-sm uppercase tracking-wider py-3.5 px-6 sm:px-8">
         <span>Request a Quotation</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
-      <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-brand w-full sm:w-auto text-sm py-3.5 px-7">
+      <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-brand w-full sm:w-auto text-xs sm:text-sm py-3.5 px-5 sm:px-7">
         <i data-lucide="message-circle" class="w-4 h-4"></i>
         <span>WhatsApp Us</span>
       </a>
-      <a href="tel:{{ company_phone_clean }}" class="btn btn-outline-ivory w-full sm:w-auto text-sm py-3.5 px-7">
+      <a href="tel:{{ company_phone_clean }}" class="btn btn-outline-ivory w-full sm:w-auto text-xs sm:text-sm py-3.5 px-5 sm:px-7">
         <i data-lucide="phone-call" class="w-4 h-4 text-[#B98F3D]"></i>
         <span>Call Now</span>
       </a>

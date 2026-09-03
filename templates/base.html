@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth overflow-x-hidden w-full max-w-full">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -79,7 +79,7 @@
 
   {% block extra_head %}{% endblock %}
 </head>
-<body class="bg-[#F8F7F3] text-[#172033] antialiased flex flex-col min-h-screen">
+<body class="bg-[#F8F7F3] text-[#172033] antialiased flex flex-col min-h-screen overflow-x-hidden w-full max-w-full relative">
   
   <!-- Flash Messages Component -->
   {% include 'includes/messages.html' %}
@@ -88,7 +88,7 @@
   {% include 'includes/navbar.html' %}
 
   <!-- Main Content Body -->
-  <main class="flex-1 pb-16 md:pb-0" id="main-content">
+  <main class="flex-1 pb-16 md:pb-0 w-full max-w-full overflow-x-hidden" id="main-content">
     {% block content %}{% endblock %}
   </main>
 
