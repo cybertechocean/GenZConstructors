@@ -100,29 +100,40 @@ ASGI_APPLICATION = 'config.asgi.application'
 # ==============================================================================
 # DATABASE CONFIGURATION (Supports MySQL, PostgreSQL, SQLite on Shared Hosting)
 # ==============================================================================
-db_engine = os.getenv('DB_ENGINE', '').strip()
-if db_engine:
-    DATABASES = {
-        'default': {
-            'ENGINE': db_engine,
-            'NAME': os.getenv('DB_NAME', 'genzcons_db'),
-            'USER': os.getenv('DB_USER', 'genzcons_user'),
-            'PASSWORD': os.getenv('DB_PASSWORD', ''),
-            'HOST': os.getenv('DB_HOST', 'localhost'),
-            'PORT': os.getenv('DB_PORT', '3306' if 'mysql' in db_engine else '5432'),
-            'OPTIONS': {
-                'charset': 'utf8mb4',
-            } if 'mysql' in db_engine else {},
-        }
+
+# ==============================================================================
+# DATABASE CONFIGURATION - SQLite3
+# ==============================================================================
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    # Default to SQLite for local development or simple shared hosting
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
+# db_engine = os.getenv('DB_ENGINE', '').strip()
+# if db_engine:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': db_engine,
+#             'NAME': os.getenv('DB_NAME', 'genzcons_db'),
+#             'USER': os.getenv('DB_USER', 'genzcons_user'),
+#             'PASSWORD': os.getenv('DB_PASSWORD', ''),
+#             'HOST': os.getenv('DB_HOST', 'localhost'),
+#             'PORT': os.getenv('DB_PORT', '3306' if 'mysql' in db_engine else '5432'),
+#             'OPTIONS': {
+#                 'charset': 'utf8mb4',
+#             } if 'mysql' in db_engine else {},
+#         }
+#     }
+# else:
+#     # Default to SQLite for local development or simple shared hosting
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
 
 # ==============================================================================
 # CACHE CONFIGURATION (Database Cache for shared hosting performance)
