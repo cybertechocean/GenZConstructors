@@ -13,6 +13,8 @@ class StaticViewSitemap(Sitemap):
             'core:services',
             'core:projects',
             'core:process',
+            'core:testimonials',
+            'core:faqs',
             'core:request_quote',
             'core:contact',
         ]

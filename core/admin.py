@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from unfold.admin import ModelAdmin, TabularInline
 from .models import (
-    SiteSettings, Service, Project, ProjectImage,
+    SiteSettings, Service, ServiceImage, Project, ProjectImage,
     ProcessStep, Testimonial, FAQ, Enquiry, ContactMessage
 )
 
@@ -32,7 +32,6 @@ class SiteSettingsAdmin(ModelAdmin):
     )
 
     def has_add_permission(self, request):
-        # Only allow 1 instance
         if self.model.objects.exists():
             return False
         return super().has_add_permission(request)
@@ -41,30 +40,112 @@ class SiteSettingsAdmin(ModelAdmin):
         return False
 
 
+class ServiceImageInline(TabularInline):
+    model = ServiceImage
+    extra = 2
+    fields = ('image', 'image_url', 'caption', 'display_order', 'image_preview')
+    readonly_fields = ('image_preview',)
+
+    def image_preview(self, obj):
+        url = obj.get_image_url
+        if url:
+            return format_html('<a href="{}" target="_blank"><img src="{}" style="max-height: 48px; max-width: 72px; object-fit: cover; border-radius: 6px; border: 1px solid #B98F3D;" /></a>', url, url)
+        return "No image"
+    image_preview.short_description = "Preview"
+
+
 @admin.register(Service)
 class ServiceAdmin(ModelAdmin):
-    list_display = ('name', 'category', 'icon', 'featured', 'display_order', 'updated_at')
+    list_display = ('image_preview', 'name', 'category', 'icon', 'featured', 'display_order', 'updated_at')
     list_filter = ('category', 'featured')
     search_fields = ('name', 'short_description', 'description')
     prepopulated_fields = {'slug': ('name',)}
     list_editable = ('featured', 'display_order')
+    inlines = [ServiceImageInline]
+    readonly_fields = ('featured_preview',)
+
+    fieldsets = (
+        ("Basic Information", {
+            'fields': ('name', 'slug', 'category', 'icon', 'short_description', 'description', 'key_features')
+        }),
+        ("Featured Image", {
+            'fields': ('featured_image', 'featured_image_url', 'featured_preview'),
+            'description': 'Upload an image file OR paste a direct image URL (e.g. https://...)'
+        }),
+        ("Display & SEO Options", {
+            'fields': ('featured', 'display_order', 'seo_title', 'seo_description')
+        }),
+    )
+
+    def image_preview(self, obj):
+        url = obj.get_featured_image_url
+        if url:
+            return format_html('<img src="{}" style="height: 36px; width: 48px; object-fit: cover; border-radius: 4px; border: 1px solid #B98F3D;" />', url)
+        return format_html('<span style="color: #94a3b8; font-size: 11px;">No Image</span>')
+    image_preview.short_description = "Image"
+
+    def featured_preview(self, obj):
+        url = obj.get_featured_image_url
+        if url:
+            return format_html('<a href="{}" target="_blank"><img src="{}" style="max-height: 120px; max-width: 200px; object-fit: cover; border-radius: 8px; border: 1px solid #B98F3D;" /></a>', url, url)
+        return "No image uploaded or linked yet."
+    featured_preview.short_description = "Current Image Preview"
 
 
 class ProjectImageInline(TabularInline):
     model = ProjectImage
     extra = 2
-    fields = ('image', 'caption', 'display_order')
+    fields = ('image', 'image_url', 'caption', 'display_order', 'image_preview')
+    readonly_fields = ('image_preview',)
+
+    def image_preview(self, obj):
+        url = obj.get_image_url
+        if url:
+            return format_html('<a href="{}" target="_blank"><img src="{}" style="max-height: 48px; max-width: 72px; object-fit: cover; border-radius: 6px; border: 1px solid #B98F3D;" /></a>', url, url)
+        return "No image"
+    image_preview.short_description = "Preview"
 
 
 @admin.register(Project)
 class ProjectAdmin(ModelAdmin):
-    list_display = ('title', 'category', 'location', 'status', 'featured', 'is_sample', 'display_order')
+    list_display = ('image_preview', 'title', 'category', 'location', 'status', 'featured', 'is_sample', 'display_order')
     list_filter = ('category', 'status', 'featured', 'is_sample')
     search_fields = ('title', 'location', 'description')
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('services',)
     list_editable = ('featured', 'display_order')
     inlines = [ProjectImageInline]
+    readonly_fields = ('featured_preview',)
+
+    fieldsets = (
+        ("Project Identification", {
+            'fields': ('title', 'slug', 'category', 'location', 'status', 'services')
+        }),
+        ("Featured Image", {
+            'fields': ('featured_image', 'featured_image_url', 'featured_preview'),
+            'description': 'Upload an image file OR paste a direct image URL (e.g. https://...)'
+        }),
+        ("Project Details & Scope", {
+            'fields': ('short_description', 'description', 'scope_of_work')
+        }),
+        ("Display & SEO Options", {
+            'fields': ('featured', 'is_sample', 'display_order', 'seo_title', 'seo_description')
+        }),
+    )
+
+    def image_preview(self, obj):
+        url = obj.get_featured_image_url
+        if url:
+            return format_html('<img src="{}" style="height: 36px; width: 48px; object-fit: cover; border-radius: 4px; border: 1px solid #B98F3D;" />', url)
+        return format_html('<span style="color: #94a3b8; font-size: 11px;">No Image</span>')
+    image_preview.short_description = "Image"
+
+    def featured_preview(self, obj):
+        url = obj.get_featured_image_url
+        if url:
+            return format_html('<a href="{}" target="_blank"><img src="{}" style="max-height: 120px; max-width: 200px; object-fit: cover; border-radius: 8px; border: 1px solid #B98F3D;" /></a>', url, url)
+        return "No image uploaded or linked yet."
+    featured_preview.short_description = "Current Image Preview"
 
 
 @admin.register(ProcessStep)

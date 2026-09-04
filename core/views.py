@@ -83,9 +83,9 @@ def services_list(request):
 
 def service_detail(request, slug):
     """
-    Individual service detail page.
+    Individual service detail page with service gallery support.
     """
-    service = get_object_or_404(Service, slug=slug)
+    service = get_object_or_404(Service.objects.prefetch_related('gallery_images'), slug=slug)
     related_projects = Project.objects.filter(services=service)[:4]
     other_services = Service.objects.exclude(id=service.id).order_by('display_order')[:4]
     process_steps = ProcessStep.objects.filter(active=True).order_by('step_number')[:4]
@@ -98,6 +98,7 @@ def service_detail(request, slug):
 
     context = {
         'service': service,
+        'gallery': service.gallery_images.all(),
         'related_projects': related_projects,
         'other_services': other_services,
         'process_steps': process_steps,
@@ -305,6 +306,49 @@ def contact_view(request):
         'meta_description': 'Get in touch with Gen-Z Constructors. Call +254 713 706 103, chat on WhatsApp, or send us a message to discuss your next construction project.',
     }
     return render(request, 'contact/index.html', context)
+
+
+def testimonials_view(request):
+    """
+    Independent dedicated page: What Our Clients Say (Client Reviews & Testimonials).
+    """
+    testimonials = Testimonial.objects.all().order_by('-featured', '-rating', '-created_at')
+    total_reviews = testimonials.count()
+    five_star_reviews = testimonials.filter(rating=5).count()
+
+    context = {
+        'testimonials': testimonials,
+        'total_reviews': total_reviews,
+        'five_star_reviews': five_star_reviews,
+        'meta_title': 'What Our Clients Say | Reviews & Testimonials | Gen-Z Constructors',
+        'meta_description': 'Read genuine reviews and testimonials from clients who built with Gen-Z Constructors Limited Company across Kenya.',
+    }
+    return render(request, 'testimonials/index.html', context)
+
+
+def faqs_view(request):
+    """
+    Independent dedicated page: Frequently Asked Questions (FAQ).
+    """
+    all_faqs = FAQ.objects.filter(active=True).order_by('category', 'display_order', 'id')
+    categories = sorted(list(set(faq.category or 'General' for faq in all_faqs)))
+
+    # Filter by category if passed in query param
+    selected_category = request.GET.get('category', '').strip()
+    if selected_category:
+        faqs = all_faqs.filter(category=selected_category)
+    else:
+        faqs = all_faqs
+
+    context = {
+        'faqs': faqs,
+        'all_faqs': all_faqs,
+        'categories': categories,
+        'selected_category': selected_category,
+        'meta_title': 'Frequently Asked Questions (FAQ) | Gen-Z Constructors Limited Company',
+        'meta_description': 'Find answers to common questions about construction costs, architectural plans, county building permits, structural inspections and timelines in Kenya.',
+    }
+    return render(request, 'faqs/index.html', context)
 
 
 def robots_txt(request):

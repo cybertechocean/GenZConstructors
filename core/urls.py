@@ -13,6 +13,8 @@ urlpatterns = [
     path('process/', views.process_view, name='process'),
     path('request-a-quote/', views.request_quote, name='request_quote'),
     path('quote/success/<int:pk>/', views.quote_success, name='quote_success'),
+    path('testimonials/', views.testimonials_view, name='testimonials'),
+    path('faqs/', views.faqs_view, name='faqs'),
     path('contact/', views.contact_view, name='contact'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
 ]

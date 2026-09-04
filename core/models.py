@@ -146,7 +146,13 @@ class Service(models.Model):
     featured_image = models.ImageField(
         upload_to='services/',
         blank=True,
-        null=True
+        null=True,
+        help_text="Upload image file from device"
+    )
+    featured_image_url = models.URLField(
+        max_length=500,
+        blank=True,
+        help_text="Or direct image URL (e.g. https://... - alternative to file upload)"
     )
     featured = models.BooleanField(
         default=False,
@@ -186,6 +192,61 @@ class Service(models.Model):
             return []
         return [f.strip() for f in self.key_features.split('\n') if f.strip()]
 
+    @property
+    def get_featured_image_url(self):
+        if self.featured_image:
+            try:
+                return self.featured_image.url
+            except Exception:
+                pass
+        if self.featured_image_url:
+            return self.featured_image_url
+        return ""
+
+
+class ServiceImage(models.Model):
+    """
+    Additional gallery photos for a Service.
+    """
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='gallery_images')
+    image = models.ImageField(
+        upload_to='services/gallery/',
+        blank=True,
+        null=True,
+        help_text="Upload image file"
+    )
+    image_url = models.URLField(
+        max_length=500,
+        blank=True,
+        help_text="Or direct image URL (e.g. https://...)"
+    )
+    caption = models.CharField(max_length=255, blank=True)
+    display_order = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['display_order', 'id']
+        verbose_name = "Service Gallery Image"
+        verbose_name_plural = "Service Gallery Images"
+
+    def __str__(self):
+        return f"{self.service.name} - Image #{self.id}"
+
+    def clean(self):
+        if not self.image and not self.image_url:
+            raise ValidationError("Please provide either an uploaded image file or an image URL.")
+
+    @property
+    def get_image_url(self):
+        if self.image:
+            try:
+                return self.image.url
+            except Exception:
+                pass
+        if self.image_url:
+            return self.image_url
+        return ""
+
 
 class Project(models.Model):
     """
@@ -218,7 +279,17 @@ class Project(models.Model):
         blank=True,
         help_text="Key highlights or work items undertaken on this project"
     )
-    featured_image = models.ImageField(upload_to='projects/', blank=True, null=True)
+    featured_image = models.ImageField(
+        upload_to='projects/',
+        blank=True,
+        null=True,
+        help_text="Upload image file from device"
+    )
+    featured_image_url = models.URLField(
+        max_length=500,
+        blank=True,
+        help_text="Or direct image URL (e.g. https://... - alternative to file upload)"
+    )
     services = models.ManyToManyField(
         Service,
         related_name='projects',
@@ -260,13 +331,34 @@ class Project(models.Model):
             return []
         return [s.strip() for s in self.scope_of_work.split('\n') if s.strip()]
 
+    @property
+    def get_featured_image_url(self):
+        if self.featured_image:
+            try:
+                return self.featured_image.url
+            except Exception:
+                pass
+        if self.featured_image_url:
+            return self.featured_image_url
+        return ""
+
 
 class ProjectImage(models.Model):
     """
     Additional gallery photos for a Project.
     """
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='gallery_images')
-    image = models.ImageField(upload_to='projects/gallery/')
+    image = models.ImageField(
+        upload_to='projects/gallery/',
+        blank=True,
+        null=True,
+        help_text="Upload image file"
+    )
+    image_url = models.URLField(
+        max_length=500,
+        blank=True,
+        help_text="Or direct image URL (e.g. https://...)"
+    )
     caption = models.CharField(max_length=255, blank=True)
     display_order = models.PositiveIntegerField(default=0)
 
@@ -277,6 +369,21 @@ class ProjectImage(models.Model):
 
     def __str__(self):
         return f"{self.project.title} - Image #{self.id}"
+
+    def clean(self):
+        if not self.image and not self.image_url:
+            raise ValidationError("Please provide either an uploaded image file or an image URL.")
+
+    @property
+    def get_image_url(self):
+        if self.image:
+            try:
+                return self.image.url
+            except Exception:
+                pass
+        if self.image_url:
+            return self.image_url
+        return ""
 
 
 class ProcessStep(models.Model):
