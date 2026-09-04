@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ meta_title }}{% endblock %}
+{% block meta_description %}{{ meta_description }}{% endblock %}
+
+{% block content %}
+
+<!-- Hero Header -->
+<section class="bg-[#010B20] text-[#F1EDDF] py-16 lg:py-20 relative overflow-hidden border-b border-[#B98F3D]/30">
+  <div class="absolute inset-0 bg-blueprint opacity-50 pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+    
+    <nav class="flex items-center justify-center gap-2 text-xs font-heading text-slate-400 mb-2" aria-label="Breadcrumb">
+      <a href="{% url 'core:home' %}" class="hover:text-white transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-[#EDDAA0]">Frequently Asked Questions</span>
+    </nav>
+
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-md bg-[#08060A] border border-[#B98F3D]/40 text-xs font-heading font-semibold text-[#EDDAA0] uppercase tracking-wider">
+      Knowledge & Construction Guidance
+    </div>
+    
+    <h1 class="text-3xl sm:text-5xl font-heading font-extrabold text-white">
+      Frequently Asked <span class="text-gradient-gold">Questions</span>
+    </h1>
+    
+    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto">
+      Clear, transparent answers regarding construction estimates, county approvals, architectural drawings, and on-site milestone delivery in Kenya.
+    </p>
+
+  </div>
+</section>
+
+<!-- Main FAQ Section -->
+<section class="py-16 lg:py-20 bg-[#F8F7F3]">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Category Filter Pills (if multiple categories) -->
+    {% if categories|length > 1 %}
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
+      <a href="{% url 'core:faqs' %}" class="px-4 py-2 rounded-full text-xs font-heading font-semibold transition-all {% if not selected_category %}bg-[#010B20] text-[#EDDAA0] border border-[#B98F3D]/40 shadow-sm{% else %}bg-white text-slate-700 border border-[#E7E2D8] hover:border-[#B98F3D]{% endif %}">
+        All Questions ({{ all_faqs.count }})
+      </a>
+      {% for cat in categories %}
+      <a href="{% url 'core:faqs' %}?category={{ cat|urlencode }}" class="px-4 py-2 rounded-full text-xs font-heading font-semibold transition-all {% if selected_category == cat %}bg-[#010B20] text-[#EDDAA0] border border-[#B98F3D]/40 shadow-sm{% else %}bg-white text-slate-700 border border-[#E7E2D8] hover:border-[#B98F3D]{% endif %}">
+        {{ cat }}
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- FAQ Accordion List -->
+    <div class="space-y-4">
+      {% for faq in faqs %}
+      <div class="faq-item bg-white border border-[#E7E2D8] rounded-2xl overflow-hidden shadow-sm hover:border-[#B98F3D]/50 transition-all">
+        <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-[#010B20] hover:text-[#896321] transition-colors" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-full bg-[#010B20] text-[#EDDAA0] text-xs flex items-center justify-center font-bold shrink-0">
+              {{ forloop.counter }}
+            </span>
+            <span>{{ faq.question }}</span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-[#FAF8F2] border border-[#E7E2D8] flex items-center justify-center shrink-0 text-[#B98F3D]">
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 transition-transform duration-300 {% if forloop.first %}rotate-180{% endif %}"></i>
+          </div>
+        </button>
+        
+        <div class="faq-content px-6 pb-6 pt-1 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 {% if not forloop.first %}hidden{% endif %}">
+          <p class="whitespace-pre-line">{{ faq.answer }}</p>
+          {% if faq.category %}
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2">
+            <span class="text-[10px] uppercase font-heading font-semibold tracking-wider text-[#896321] px-2 py-0.5 rounded bg-[#FAF8F2] border border-[#B98F3D]/20">
+              {{ faq.category }}
+            </span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% empty %}
+      <div class="text-center p-12 bg-white rounded-2xl border border-dashed border-[#E7E2D8]">
+        <p class="text-slate-500 font-heading text-sm">No questions found under this category. Check back soon.</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Ask a Direct Question Card -->
+    <div class="mt-16 p-8 sm:p-10 rounded-3xl bg-[#010B20] text-[#F1EDDF] border border-[#B98F3D]/40 text-center relative overflow-hidden">
+      <div class="absolute inset-0 bg-blueprint opacity-40 pointer-events-none"></div>
+      <div class="relative max-w-2xl mx-auto space-y-5">
+        <div class="w-12 h-12 rounded-full bg-[#08060A] border border-[#B98F3D]/40 text-[#B98F3D] flex items-center justify-center mx-auto">
+          <i data-lucide="help-circle" class="w-6 h-6"></i>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-white">
+          Have a Question Not Listed Here?
+        </h2>
+        <p class="text-sm text-slate-300">
+          Our structural and project team is available to discuss your plot location, budget constraints, or architectural requirements.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <a href="{{ whatsapp_default_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary text-xs uppercase tracking-wider py-3 px-6 flex items-center gap-2">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>Ask Us On WhatsApp</span>
+          </a>
+          <a href="tel:{{ company_phone_clean }}" class="btn btn-outline-gold text-xs uppercase tracking-wider py-3 px-6 flex items-center gap-2">
+            <i data-lucide="phone" class="w-4 h-4"></i>
+            <span>Call {{ company_phone_display }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Accordion Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const toggles = document.querySelectorAll('.faq-toggle');
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', function() {
+      const content = this.nextElementSibling;
+      const icon = this.querySelector('.faq-icon');
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+      if (isExpanded) {
+        content.classList.add('hidden');
+        this.setAttribute('aria-expanded', 'false');
+        if (icon) icon.classList.remove('rotate-180');
+      } else {
+        content.classList.remove('hidden');
+        this.setAttribute('aria-expanded', 'true');
+        if (icon) icon.classList.add('rotate-180');
+      }
+    });
+  });
+});
+</script>
+
+{% endblock %}

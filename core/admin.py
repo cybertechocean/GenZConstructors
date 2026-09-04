@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from unfold.admin import ModelAdmin, TabularInline
 from .models import (
     SiteSettings, Service, ServiceImage, Project, ProjectImage,
@@ -81,7 +82,7 @@ class ServiceAdmin(ModelAdmin):
         url = obj.get_featured_image_url
         if url:
             return format_html('<img src="{}" style="height: 36px; width: 48px; object-fit: cover; border-radius: 4px; border: 1px solid #B98F3D;" />', url)
-        return format_html('<span style="color: #94a3b8; font-size: 11px;">No Image</span>')
+        return mark_safe('<span style="color: #94a3b8; font-size: 11px;">No Image</span>')
     image_preview.short_description = "Image"
 
     def featured_preview(self, obj):
@@ -137,7 +138,7 @@ class ProjectAdmin(ModelAdmin):
         url = obj.get_featured_image_url
         if url:
             return format_html('<img src="{}" style="height: 36px; width: 48px; object-fit: cover; border-radius: 4px; border: 1px solid #B98F3D;" />', url)
-        return format_html('<span style="color: #94a3b8; font-size: 11px;">No Image</span>')
+        return mark_safe('<span style="color: #94a3b8; font-size: 11px;">No Image</span>')
     image_preview.short_description = "Image"
 
     def featured_preview(self, obj):

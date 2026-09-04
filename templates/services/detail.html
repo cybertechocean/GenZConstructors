@@ -44,6 +44,18 @@
       <!-- Main Content (Left 8 cols) -->
       <div class="lg:col-span-8 space-y-10">
         
+        <!-- Featured Image Showcase -->
+        {% if service.get_featured_image_url %}
+        <div class="card-brand overflow-hidden rounded-2xl border border-[#E7E2D8] bg-[#010B20] relative h-72 sm:h-96 cursor-pointer group shadow-sm" data-lightbox-src="{{ service.get_featured_image_url }}" data-caption="{{ service.name }}">
+          <img src="{{ service.get_featured_image_url }}" alt="{{ service.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 right-4 bg-[#08060A]/85 text-[#EDDAA0] border border-[#B98F3D]/40 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 backdrop-blur-sm">
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
+            <span>View Full Image</span>
+          </div>
+        </div>
+        {% endif %}
+
         <!-- Detailed Description Card -->
         <div class="card-brand p-8 bg-white border border-[#E7E2D8] rounded-2xl space-y-6">
           <h2 class="text-2xl font-heading font-bold text-[#010B20] flex items-center gap-3">
@@ -75,6 +87,27 @@
               </div>
               <span class="text-xs sm:text-sm font-medium text-slate-800">{{ feature }}</span>
             </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Service Image Gallery -->
+        {% if gallery %}
+        <div class="space-y-4">
+          <h3 class="text-xl font-heading font-bold text-[#010B20]">
+            Service Image Gallery
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            {% for g_img in gallery %}
+            {% if g_img.get_image_url %}
+            <div class="relative h-44 rounded-xl overflow-hidden border border-[#E7E2D8] cursor-pointer group shadow-sm" data-lightbox-src="{{ g_img.get_image_url }}" data-caption="{{ g_img.caption|default:service.name }}">
+              <img src="{{ g_img.get_image_url }}" alt="{{ g_img.caption|default:service.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                <i data-lucide="maximize-2" class="w-6 h-6"></i>
+              </div>
+            </div>
+            {% endif %}
             {% endfor %}
           </div>
         </div>

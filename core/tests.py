@@ -227,3 +227,80 @@ class FormAndWorkflowTests(TestCase):
         contact_msg = ContactMessage.objects.get(email='grace@example.com')
         self.assertEqual(contact_msg.full_name, 'Grace Achieng')
         self.assertEqual(contact_msg.subject, 'General Inquiry about Design')
+
+    def test_testimonials_view(self):
+        Testimonial.objects.create(
+            client_name="Sarah Mutua",
+            role_or_company="Homeowner, Karen",
+            testimonial="The Gen-Z team handled our house with utmost professionalism.",
+            rating=5,
+            featured=True
+        )
+        response = self.client.get(reverse('core:testimonials'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "What Our Clients Say")
+        self.assertContains(response, "Sarah Mutua")
+        self.assertContains(response, "The Gen-Z team handled our house")
+
+    def test_faqs_view(self):
+        FAQ.objects.create(
+            question="Do you help with county building approval?",
+            answer="Yes, our architectural team submits and secures county building approvals.",
+            category="Permits",
+            active=True
+        )
+        response = self.client.get(reverse('core:faqs'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Frequently Asked Questions")
+        self.assertContains(response, "Do you help with county building approval?")
+
+    def test_image_url_support_and_service_gallery(self):
+        from .models import ServiceImage, ProjectImage
+        # Test Service featured_image_url
+        service_with_url = Service.objects.create(
+            name="Roofing Solutions",
+            category="specialized",
+            short_description="Roofing works",
+            description="Detailed roofing works",
+            featured_image_url="https://images.unsplash.com/photo-roofing.jpg"
+        )
+        self.assertEqual(service_with_url.get_featured_image_url, "https://images.unsplash.com/photo-roofing.jpg")
+
+        # Test ServiceImage with image_url
+        svc_img = ServiceImage.objects.create(
+            service=service_with_url,
+            image_url="https://images.unsplash.com/photo-gallery-1.jpg",
+            caption="Roof Truss Installation"
+        )
+        self.assertEqual(svc_img.get_image_url, "https://images.unsplash.com/photo-gallery-1.jpg")
+
+        # Test Project featured_image_url
+        project_with_url = Project.objects.create(
+            title="Commercial Warehousing",
+            category="commercial",
+            short_description="Heavy duty warehouse",
+            description="Warehouse description",
+            featured_image_url="https://images.unsplash.com/photo-warehouse.jpg"
+        )
+        self.assertEqual(project_with_url.get_featured_image_url, "https://images.unsplash.com/photo-warehouse.jpg")
+
+        # Test ProjectImage with image_url
+        proj_img = ProjectImage.objects.create(
+            project=project_with_url,
+            image_url="https://images.unsplash.com/photo-proj-gallery.jpg",
+            caption="Steel Erection"
+        )
+        self.assertEqual(proj_img.get_image_url, "https://images.unsplash.com/photo-proj-gallery.jpg")
+
+    def test_admin_changelist_no_typeerror(self):
+        from django.contrib.auth.models import User
+        superuser = User.objects.create_superuser('admin_tester', 'admin@test.com', 'password123')
+        self.client.login(username='admin_tester', password='password123')
+
+        # Check project changelist (where format_html TypeError occurred previously)
+        proj_resp = self.client.get('/admin/core/project/')
+        self.assertEqual(proj_resp.status_code, 200)
+
+        # Check service changelist
+        svc_resp = self.client.get('/admin/core/service/')
+        self.assertEqual(svc_resp.status_code, 200)

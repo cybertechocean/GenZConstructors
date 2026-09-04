@@ -85,6 +85,18 @@
             </a>
           </li>
           <li>
+            <a href="{% url 'core:testimonials' %}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
+              <span>What Our Clients Say</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'core:faqs' %}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
+              <span>Frequently Asked Questions</span>
+            </a>
+          </li>
+          <li>
             <a href="{% url 'core:request_quote' %}" class="hover:text-[#EDDAA0] transition-colors flex items-center gap-2">
               <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#B98F3D]"></i>
               <span>Request a Quote</span>
@@ -179,6 +191,8 @@
       <p>© {{ current_year }} Gen-Z Constructors Limited Company. All rights reserved. Built by <a href="https://uniquetechcamp.org" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#EDDAA0] hover:underline">Unique Tech Camp</a></p>
       <div class="flex items-center gap-6">
         <a href="{% url 'core:services' %}" class="hover:text-white transition-colors">Services</a>
+        <a href="{% url 'core:testimonials' %}" class="hover:text-white transition-colors">Reviews</a>
+        <a href="{% url 'core:faqs' %}" class="hover:text-white transition-colors">FAQs</a>
         <a href="{% url 'core:process' %}" class="hover:text-white transition-colors">Process</a>
         <a href="{% url 'core:contact' %}" class="hover:text-white transition-colors">Contact</a>
         <a href="{% url 'core:robots_txt' %}" class="hover:text-white transition-colors">Robots</a>
